@@ -16,7 +16,7 @@ app.whenReady().then(() => {
         }
     });
 
-    wind.removeMenu();
+    // wind.removeMenu();
     wind.loadFile('index.html');
 
     ipcMain.on('clientStartup', (name, disc, avatar, status, activity, type) => {
@@ -83,7 +83,7 @@ app.whenReady().then(() => {
     });
 });
 
-if(token) {
-    client = createClient.execute();
-    client.login(token);
-}
+// if(token) {
+//     client = createClient.execute();
+//     client.login(token);
+// }

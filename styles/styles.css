@@ -81,7 +81,7 @@ input:disabled {
 }
 
 .bot-wrapper {
-    padding-top: 20px;
+    padding: 20px 0px;
     display: flex;
 }
 
@@ -164,7 +164,7 @@ input:disabled {
     justify-content: space-between;
 }
 
-.edition-wrapper > .edition-header > .site-title {
+.site-title {
     display: flex;
     align-items: center;
     background-color: #202225;
@@ -256,6 +256,11 @@ input:disabled {
 
 #activity-input {
     width: 90%;
+}
+
+.guilds-wrapper > .guilds-header {
+    display: flex;
+    justify-content: flex-start;
 }
 
 .hiden {

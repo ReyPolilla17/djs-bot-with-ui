@@ -13,7 +13,7 @@ const info = new TextDecoder("utf-8").decode(dir);
 const data = JSON.parse(info);
 
 if(!data.token) {
-    document.querySelector('.bot-wrapper').classList.add('hiden');
+    document.querySelector('.home-wrapper').classList.add('hiden');
 } else {
     document.querySelector('.token-wrapper').classList.add('hiden');
 }
