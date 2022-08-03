@@ -1,0 +1,263 @@
+body {
+    margin: 0;
+    padding: 0px 20px;
+    background-color: #2f3136;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.token-wrapper {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.token-wrapper > .info-area {
+    font-size: 1.5em;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    border-radius: 3px;
+    background-color: #202225;
+}
+
+.token-wrapper > .warning-wrapper {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+.token-wrapper > .form-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.token-wrapper > .form-wrapper > .input-wrapper {
+    width: 100%;
+}
+
+input {
+    background-color: #18191c;
+    color: #686d73;
+    font-size: 1.2rem;
+    padding: 10px;
+    border-radius: 3px;
+    border: none;
+    transition: color  0.3s;
+    transition: background-color 0.3s;
+}
+
+input:focus {
+    background-color: #202225;
+    color: white;
+    outline: none;
+}
+
+input:disabled {
+    background-color: #202225;
+    color: white;
+    outline: none;
+}
+
+.token-wrapper > .form-wrapper > .input-wrapper > input {
+    width: 100%;
+}
+
+.token-wrapper > .form-wrapper > .input-wrapper > input:not(:placeholder-shown) {
+    letter-spacing: 3px;
+}
+
+.error-message {
+    color: #F14346;
+    visibility: hidden;
+    position: absolute;
+}
+
+.token-wrapper > .error-message {
+    position: relative;
+}
+
+.bot-wrapper {
+    padding-top: 20px;
+    display: flex;
+}
+
+.bot-wrapper > .bot-stats-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #18191c;
+    margin-right: 10px;
+    padding: 10px 20px;
+    border-radius: 3px;
+    width: 60%;
+}
+
+.bot-wrapper > .bot-stats-wrapper > .bot-starting {
+    font-size: 2em;
+}
+
+.bot-wrapper > .bot-stats-wrapper > .bot-login {
+    display: flex;
+    align-items: center;   
+}
+
+.bot-wrapper > .bot-stats-wrapper > .bot-login > .bot-icon {
+    height: 100px;
+}
+
+.bot-wrapper > .bot-stats-wrapper > .bot-login > .bot-icon img {
+    width: 100px;
+    height: 100%;
+    border-radius: 100%;
+}
+
+.bot-wrapper > .bot-stats-wrapper > .bot-login > .bot-data-wrapper {
+    padding-left: 20px;
+}
+
+.bot-wrapper > .bot-stats-wrapper > .bot-login > .bot-data-wrapper > .bot-user {
+    display: flex;
+    font-size: 2em;
+    padding-bottom: 15px;
+}
+
+.bot-wrapper > .bot-stats-wrapper > .bot-login > .bot-data-wrapper > .bot-user > .bot-disc {
+    color: #686d73;
+}
+
+.bot-wrapper > .bot-stats-wrapper > .bot-login > .bot-data-wrapper > .bot-status-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.bot-wrapper > .bot-stats-wrapper > .bot-login > .bot-data-wrapper > .bot-status-wrapper > .activity-wrapper {
+    display: flex;
+}
+
+.activity-wrapper > .activity-name {
+    font-weight: bold;
+    margin-left: .5em;
+}
+
+.bot-wrapper > .bot-extras-wrapper {
+    margin-left: 10px;
+    border-radius: 3px;
+    padding-right: 20px;
+    color: white;
+}
+
+.bot-wrapper > .bot-extras-wrapper > .edition-warning {
+    display: flex;
+    align-items: center;
+    background-color: #202225;
+    line-height: 1.5em;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+}
+
+.edition-wrapper > .edition-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edition-wrapper > .edition-header > .site-title {
+    display: flex;
+    align-items: center;
+    background-color: #202225;
+    font-size: 1.5em;
+    line-height: 1.5em;
+    padding: 5px 20px;
+    border-radius: 3px;
+}
+
+.edition-wrapper > .options-wrapper {
+    display: flex;
+    border-radius: 3px;
+    background-color: #18191c;
+}
+
+.edition-wrapper > .options-wrapper > .avatar-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+.edition-wrapper > .options-wrapper > .edition-form-wrapper {
+    margin: 20px;
+    width: 100%;
+}
+
+.edition-wrapper > .options-wrapper > .avatar-wrapper img{
+    border-radius: 100%;
+    width: 170px;
+    height: 170px;
+}
+
+.edition-section {
+    margin-bottom: 10px;
+}
+
+.edition-section > .title-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #202225;
+    padding: 5px 20px;
+    border-radius: 3px;
+    width: min-content;
+}
+
+.edition-section > .form-wrapper {
+    display: flex;
+    background-color: #2f3136;
+    padding: 20px;
+    border-radius: 3px;
+}
+
+.edition-section > .form-wrapper > .text-area {
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+    margin: 0px 10px;
+}
+
+.edition-bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edition-bottom input {
+    background-color: #202225;
+    outline: none;
+}
+
+.edition-bottom input:focus {
+    background-color: #2f3136;
+    outline: none;
+}
+
+.selects-wrapper {
+    display: flex;
+}
+
+.selects-wrapper > .menu {
+    margin-right: 20px;
+}
+
+.selects-wrapper > .status-menu {
+    margin-right: 10px;
+}
+
+#activity-input {
+    width: 90%;
+}
+
+.hiden {
+    display: none;
+}

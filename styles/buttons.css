@@ -1,0 +1,68 @@
+.blue-btn {
+    background-color: #5865F2;
+    color: white;
+    font-size: 1.2rem;
+    padding: 10px;
+    border-radius: 3px;
+    border: none;
+    width: 100px;
+    transition: 0.3s;
+}
+
+.blue-btn:hover {
+    background-color: #4752C4;
+}
+
+.blue-btn:active {
+    background-color: #3C45A5;
+}
+
+.blue-btn:disabled {
+    background-color: #3C45A5;
+}
+
+.red-btn {
+    background-color: #D83C3E;
+    color: white;
+    font-size: 1.2rem;
+    padding: 10px;
+    border-radius: 3px;
+    border: none;
+    width: 100px;
+    transition: 0.3s;
+}
+
+.red-btn:hover {
+    background-color: #A12D2F;
+}
+
+.red-btn:active {
+    background-color: #8C2729;
+}
+
+.red-btn:disabled {
+    background-color: #8C2729;
+}
+
+.green-btn {
+    background-color: #2D7D46;
+    color: white;
+    font-size: 1.2rem;
+    padding: 10px;
+    border-radius: 3px;
+    border: none;
+    width: 100px;
+    transition: 0.3s;
+}
+
+.green-btn:hover {
+    background-color: #215B32;
+}
+
+.green-btn:active {
+    background-color: #1E532E;
+}
+
+.green-btn:disabled {
+    background-color: #1E532E;
+}

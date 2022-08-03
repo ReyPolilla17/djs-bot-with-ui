@@ -1,0 +1,15 @@
+{
+  "name": "bot-con-interfaz",
+  "version": "1.0.0",
+  "description": "un rápido test",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron index.js"
+  },
+  "author": "ReyPolilla17",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.0.3",
+    "electron": "^19.0.9"
+  }
+}

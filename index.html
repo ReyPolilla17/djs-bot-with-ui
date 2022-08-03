@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot</title>
+    <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">   
+    <link
+        rel="stylesheet"
+        href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+        crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="./styles/buttons.css">
+    <link rel="stylesheet" href="./styles/statuses.css">
+    <link rel="stylesheet" href="./styles/selects.css">
+    
+    <script defer src="./scripts.js"></script>
+</head>
+<body>
+    <div class="token-wrapper">
+        <div class="info-area">
+            No hay ningun bot registrado. ¡Cambiemoslo!
+        </div>
+
+        <div class="warning-wrapper">
+            No compartas el token de tu bot con nadie.
+        </div>
+
+        <div class="form-wrapper">
+            <div class="input-wrapper">
+                <input id="input-token" type="password" onclick="resetSubmit('submit-error')" onkeypress="if(event.key === 'Enter') submitToken('input-token', 'submit-error')" placeholder="Introduce el token de tu bot.">
+            </div>
+    
+            <div class="button-wrapper">
+                <button type="submit" class="blue-btn" onclick="submitToken('input-token', 'submit-error')">Enviar</button>
+            </div>
+        </div>
+
+        <div class="error-message" id="submit-error">
+            Ocurrió un error, intenta con otro token...
+        </div>
+    </div>
+    <div class="bot-wrapper">
+        <div class="bot-stats-wrapper">
+            <div class="bot-starting">
+                Tu bot está iniciando sesión...
+            </div>
+
+            <div id="login" class="hiden">
+                <div class="bot-icon">
+                    <img src="https://cdn.discordapp.com/embed/avatars/3.png" alt="Bot Icon" class="avatar">
+                </div>
+    
+                <div class="bot-data-wrapper">
+                    <div class="bot-user">
+                        <div class="bot-name">Bot Name</div>
+    
+                        <div class="bot-disc">
+                            #1234
+                        </div>
+                    </div>
+        
+                    <div class="bot-status-wrapper">
+                        <div class="status-offline" id="status">
+                            <div class="helper"></div>
+                        </div>
+        
+                        <div class="activity-wrapper">
+                            <div class="activity-type"></div>
+    
+                            <div class="activity-name"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bot-extras-wrapper">
+            <div class="edition-warning">
+                Algundos cambios pueden tardar en aplicarse al bot.
+            </div>
+
+            <div class="button-wrapper">
+                <button type="submit" disabled class="blue-btn" id="edit-btn" onclick="hideShow('bot-wrapper', 'edition-wrapper'), transferBot()">Editar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="edition-wrapper hiden">
+        <div class="edition-header">
+            <div class="site-title">
+                Editar bot
+            </div>
+    
+            <div class="cancel-button-wrapper">
+                <button type="submit" class="red-btn" onclick="hideShow('edition-wrapper', 'bot-wrapper')">Cancelar</button>
+            </div>
+        </div>
+
+        <div class="options-wrapper">
+            <div class="avatar-wrapper">
+                <img src="https://cdn.discordapp.com/embed/avatars/3.png" alt="Bot Icon" class="avatar">
+                <button type="submit" class="red-btn" onclick="resetAvatar()">Reiniciar</button>
+            </div>
+
+            <div class="edition-form-wrapper">
+                <div class="edition-section">
+                    <div class="title-area">
+                        Avatar
+                    </div>
+
+                    <div class="form-wrapper">
+                        <div class="warn-wrapper">
+                            <div class="input-wrapper">
+                                <input type="text" name="avatar-url" id="avatar-input" placeholder="URL del avatar" onclick="resetSubmit('avatar-error')" onkeypress="if(event.key === 'Enter') enterLink('avatar-input')">
+                            </div>
+
+                            <div class="error-message" id="avatar-error">
+                                Error
+                            </div>
+                        </div>
+
+                        <div class="text-area">
+                            o
+                        </div>
+
+                        <div class="button-wrapper">
+                            <button type="submit" class="blue-btn" onclick="openPath()">Subir</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="edition-section">
+                    <div class="title-area">
+                        Actividad
+                    </div>
+
+                    <div class="form-wrapper">
+                        <div class="selects-wrapper">
+                            <div class="menu">
+                                <div class="placeholder" id="status-selector">
+                                    <div class="info">
+                                        <div class="0"></div>
+                                        <div class="status-online"></div>
+                                    </div>
+                                    
+                                    <i class="fas fa-angle-down"></i>
+                                </div>
+
+                                <div class="options">
+                                    <div class="option" id="s-online" onclick="select('status-selector', 's-online')">
+                                        <div class="info">
+                                            <div class="0"></div>
+                                            <div class="status-online"></div> 
+                                        </div>
+                                        
+                                        <div class="text">
+                                            En linea
+                                        </div>
+                                    </div>
+
+                                    <div class="option" id="s-dnd" onclick="select('status-selector', 's-dnd')">
+                                        <div class="info">
+                                            <div class="1"></div>
+                                            <div class="status-dnd">
+                                                <div class="helper"></div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="text">
+                                            No molestar
+                                        </div>
+                                    </div>
+
+                                    <div class="option" id="s-idle" onclick="select('status-selector', 's-idle')">
+                                        <div class="info">
+                                            <div class="2"></div>
+                                            <div class="status-idle"></div>
+                                        </div>
+
+                                        <div class="text">
+                                            Ausente
+                                        </div>
+                                    </div>
+
+                                    <div class="option" id="s-offline" onclick="select('status-selector', 's-offline')">
+                                        <div class="info">
+                                            <div class="3"></div>
+                                            <div class="status-offline"></div>                                            
+                                        </div>
+
+                                        <div class="text">
+                                            Desconectado
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="menu">
+                                <div class="placeholder" id="activity-selector">
+                                    <div class="info">
+                                        <div class="0"></div>
+                                        <div class="text">Ninguna</div>
+                                    </div>
+                                    
+                                    <i class="fas fa-angle-down"></i>
+                                </div>
+
+                                <div class="options">
+                                    <div class="option" id="a-none" onclick="select('activity-selector', 'a-none'), disable('activity-input')">
+                                        <div class="info">
+                                            <div class="0"></div>
+                                            <div class="text">Ninguna</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="option" id="a-playing" onclick="select('activity-selector', 'a-playing'), enable('activity-input')">
+                                        <div class="info">
+                                            <div class="1"></div>
+                                            <div class="text">Jugando</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="option" id="a-streaming" onclick="select('activity-selector', 'a-streaming'), enable('activity-input')">
+                                        <div class="info">
+                                            <div class="2"></div>
+                                            <div class="text">Transmitiendo</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="option" id="a-listening" onclick="select('activity-selector', 'a-listening'), enable('activity-input')">
+                                        <div class="info">
+                                            <div class="3"></div>
+                                            <div class="text">Escuchando</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="option" id="a-watching" onclick="select('activity-selector', 'a-watching'), enable('activity-input')">
+                                        <div class="info">
+                                            <div class="4"></div>
+                                            <div class="text">Viendo</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="option" id="a-competing" onclick="select('activity-selector', 'a-competing'), enable('activity-input')">
+                                        <div class="info">
+                                            <div class="5"></div>
+                                            <div class="text">Compitiendo</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="warn-wrapper">
+                            <div class="input-wrapper">
+                                <input type="text" name="avtivity" id="activity-input" placeholder="Actividad" onclick="resetSubmit('activity-error')">
+                            </div>
+
+                            <div class="error-message" id="activity-error">
+                                Este campo es obligatorio.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="edition-bottom">
+                    <div class="warn-wrapper">
+                        <div class="botname-edition-wrapper">    
+                            <input type="text" name="bot-name" id="botname-input" placeholder="Nombre" onclick="resetSubmit('name-error')">
+                        </div>
+
+                        <div class="error-message" id="name-error">
+                            Error
+                        </div>
+                    </div>
+    
+                    <div class="edit-button-wrapper">
+                        <button type="submit" class="green-btn" id="confirm-edit" onclick="editBot()">Editar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="token-wrapper"> 
+            <div class="info-area">
+                También puedes cambiar de bot:
+            </div>   
+
+            <div class="warning-wrapper">
+                No compartas el token de tu bot con nadie.
+            </div>
+    
+            <div class="form-wrapper">
+                <div class="input-wrapper">
+                    <input id="change-token" type="password" onclick="resetSubmit('change-error')" onkeypress="if(event.key === 'Enter') submitToken('change-token', 'change-error')" placeholder="Introduce el token del nuevo bot.">
+                </div>
+        
+                <div class="button-wrapper">
+                    <button type="submit" class="blue-btn" onclick="submitToken('change-token', 'change-error')">Enviar</button>
+                </div>
+            </div>
+    
+            <div class="error-message" id="change-error">
+                Ocurrió un error, intenta con otro token...
+            </div>
+        </div>
+    </div>
+</body>
+</html>

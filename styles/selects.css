@@ -1,0 +1,53 @@
+.menu {
+    height: fit-content;
+    position: relative;
+    background-color: #18191c;
+    color: #686d73;
+    font-size: 1.2rem;
+    padding: 10px;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+.menu:hover {
+    background-color: #202225;
+}
+
+.menu > .placeholder {
+    display: flex;
+}
+
+.menu > .options { 
+    min-width: max-content;
+    background-color: #18191c;
+    border-radius: 3px;
+    position: absolute;
+    z-index: 1;
+    display: none;
+}
+
+.menu > .options > .option {
+    padding: 10px 20px;
+    display: flex;
+}
+
+.text {
+    margin-right: 10px;
+}
+
+.menu:hover .options {
+    display: block;
+}
+
+.option:hover {
+    background-color: #202225;
+    border-radius: 3px;
+}
+
+.option:active {
+    background-color: #2f3136;
+}
+
+.menu > .placeholder > .info > .name {
+    padding-right: 10px;
+}

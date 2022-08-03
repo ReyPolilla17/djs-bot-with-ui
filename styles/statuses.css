@@ -1,0 +1,43 @@
+.status-online {
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    background-color: #3BA55D;
+    margin-right: 10px;
+}
+
+.status-idle {
+    height: 14px;
+    width: 14px;
+    border-radius: 100%;
+    margin-right: 10px;
+    border-bottom: 6px solid #FFAD1A;
+    border-right: 6px solid #FFAD1A;
+}
+
+.status-dnd {
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    background-color: #F14346;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.status-dnd > .helper {
+    height: 6px;
+    width: 18px;
+    border-radius: 3px;
+    background-color: #18191c;
+}
+
+
+.status-offline {
+    border: 5px solid #7C8897;
+    height: 10px;
+    width: 10px;
+    border-radius: 100%;
+    margin-right: 10px;
+}
