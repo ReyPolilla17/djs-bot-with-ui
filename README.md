@@ -9,5 +9,5 @@ config.json
         "status": "online",
         "activity": 0,
         "name": null
-    },
+    }
 }
