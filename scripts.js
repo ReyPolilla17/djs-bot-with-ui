@@ -188,6 +188,7 @@ async function openPath() {
     renderer.send('openFile');
 }
 
+// document.getElementsByClassName('...')[...].style.display = '...';
 // const item = document.querySelector('.');
 // item.classList.add('hiden')
 // item.classList.remove('hiden')

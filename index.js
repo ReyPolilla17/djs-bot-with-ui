@@ -83,7 +83,7 @@ app.whenReady().then(() => {
     });
 });
 
-// if(token) {
-//     client = createClient.execute();
-//     client.login(token);
-// }
+if(token) {
+    client = createClient.execute();
+    client.login(token);
+}

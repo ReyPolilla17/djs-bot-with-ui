@@ -83,6 +83,7 @@ input:disabled {
 .bot-wrapper {
     padding: 20px 0px;
     display: flex;
+    justify-content: space-between;
 }
 
 .bot-wrapper > .bot-stats-wrapper {
@@ -145,7 +146,6 @@ input:disabled {
 .bot-wrapper > .bot-extras-wrapper {
     margin-left: 10px;
     border-radius: 3px;
-    padding-right: 20px;
     color: white;
 }
 
@@ -256,11 +256,6 @@ input:disabled {
 
 #activity-input {
     width: 90%;
-}
-
-.guilds-wrapper > .guilds-header {
-    display: flex;
-    justify-content: flex-start;
 }
 
 .hiden {
