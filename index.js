@@ -84,6 +84,6 @@ app.whenReady().then(() => {
 });
 
 if(token) {
-    client = createClient.execute()
+    client = createClient.execute();
     client.login(token);
 }

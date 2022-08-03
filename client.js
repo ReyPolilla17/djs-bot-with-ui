@@ -13,7 +13,7 @@ module.exports = {
                 GatewayIntentBits.Guilds,
                 GatewayIntentBits.GuildMessages,
                 GatewayIntentBits.MessageContent,
-                GatewayIntentBits.GuildPresences
+                GatewayIntentBits.GuildPresences,
             ],
             partials: [
                 Partials.Channel,
