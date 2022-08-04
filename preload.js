@@ -14,7 +14,7 @@ ipcRenderer.on('errLogin', (event, err, id) => {
 ipcRenderer.on('succesLogin', (event, id) => {
     document.querySelector('.token-wrapper').classList.add('hiden');
     document.querySelector('.edition-wrapper').classList.add('hiden');
-    document.querySelector('.home-wrapper').classList.remove('hiden');
+    document.querySelector('.bot-wrapper').classList.remove('hiden');
 
     document.querySelector(`#${id}`).value = '';
 });
@@ -102,7 +102,7 @@ ipcRenderer.on('usedName', () => {
 
 ipcRenderer.on('successEdition', () => {
     document.querySelector('.edition-wrapper').classList.add('hiden');
-    document.querySelector('.home-wrapper').classList.remove('hiden');
+    document.querySelector('.bot-wrapper').classList.remove('hiden');
 });
 
 ipcRenderer.on('activateEdit', () => {
