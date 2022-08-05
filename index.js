@@ -5,11 +5,6 @@ const path = require('path');
 const fs = require('fs');
 let client;
 
-/*
-    hacer que el boton de cancelar edición oculte los errores y que el cambiar de actividad tambien borre la advertencia
-    de campo obligaotrio
-*/
-
 app.disableHardwareAcceleration();
 app.whenReady().then(() => {
     const wind = new BrowserWindow({

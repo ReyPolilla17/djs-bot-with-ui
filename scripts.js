@@ -29,6 +29,7 @@ function resetSubmit(id) {
 
 function select(menuId, optionId) {
     document.querySelector(`#${menuId}`).firstElementChild.innerHTML = document.querySelector(`#${optionId}`).firstElementChild.innerHTML;
+    document.querySelector(`#activity-error`).style.visibility = 'hidden';
 }
 
 function hideShow (hide, show) {
@@ -47,6 +48,10 @@ function transferBot() {
     document.querySelector('#botname-input').value = '';
     document.querySelector('#activity-input').value = aName === '' ? '': aName;
     document.querySelector('#avatar-input').value = '';
+
+    document.querySelector('#avatar-error').style.visibility = 'hidden';
+    document.querySelector('#activity-error').style.visibility = 'hidden';
+    document.querySelector('#name-error').style.visibility = 'hidden';
 
     switch(status) {
         case ('status-online'):
