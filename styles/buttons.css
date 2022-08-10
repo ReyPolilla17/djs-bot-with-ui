@@ -1,11 +1,13 @@
 .blue-btn {
+    text-decoration: none;
     background-color: #5865F2;
     color: white;
     font-size: 1.2rem;
     padding: 10px;
     border-radius: 3px;
     border: none;
-    width: 100px;
+    min-width: 100px;
+    max-width: max-content;
     transition: 0.3s;
 }
 
@@ -22,13 +24,15 @@
 }
 
 .red-btn {
+    text-decoration: none;
     background-color: #D83C3E;
     color: white;
     font-size: 1.2rem;
     padding: 10px;
     border-radius: 3px;
     border: none;
-    width: 100px;
+    min-width: 100px;
+    max-width: max-content;
     transition: 0.3s;
 }
 
@@ -45,13 +49,15 @@
 }
 
 .green-btn {
+    text-decoration: none;
     background-color: #2D7D46;
     color: white;
     font-size: 1.2rem;
     padding: 10px;
     border-radius: 3px;
     border: none;
-    width: 100px;
+    min-width: 100px;
+    max-width: max-content;
     transition: 0.3s;
 }
 
@@ -65,4 +71,29 @@
 
 .green-btn:disabled {
     background-color: #1E532E;
+}
+
+.grey-btn {
+    text-decoration: none;
+    background-color: #4F545C;
+    color: white;
+    font-size: 1.2rem;
+    padding: 10px;
+    border-radius: 3px;
+    border: none;
+    min-width: 100px;
+    max-width: max-content;
+    transition: 0.3s;
+}
+
+.grey-btn:hover {
+    background-color: #686D73;
+}
+
+.grey-btn:active {
+    background-color: #72767D;
+}
+
+.grey-btn:disabled {
+    background-color: #72767D;
 }

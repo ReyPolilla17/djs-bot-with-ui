@@ -6,18 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bot</title>
     <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">   
-    <link
-        rel="stylesheet"
-        href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
-        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-        crossorigin="anonymous"
-    />
+
     <link rel="stylesheet" href="./styles/styles.css">
     <link rel="stylesheet" href="./styles/buttons.css">
     <link rel="stylesheet" href="./styles/statuses.css">
     <link rel="stylesheet" href="./styles/selects.css">
     
     <script defer src="./scripts.js"></script>
+    <script src="https://kit.fontawesome.com/0f3793b933.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="token-wrapper">
@@ -102,7 +98,7 @@
                                         <div class="status-online"></div>
                                     </div>
                                     
-                                    <i class="fas fa-angle-down"></i>
+                                    <i class="fa-solid fa-angle-down"></i>
                                 </div>
                                 
                                 <div class="options">
@@ -161,7 +157,7 @@
                                         <div class="text">Ninguna</div>
                                     </div>
                                     
-                                    <i class="fas fa-angle-down"></i>
+                                    <i class="fa-solid fa-angle-down"></i>
                                 </div>
 
                                 <div class="options">
@@ -304,9 +300,15 @@
             <div class="edition-warning">
                 Algundos cambios pueden tardar en aplicarse al bot.
             </div>
+
+            <div class="extras-options">
+                <div class="button-wrapper">
+                    <button type="submit" disabled class="blue-btn" id="edit-btn" onclick="hideShow('bot-wrapper', 'edition-wrapper'), transferBot()">Editar</button>
+                </div>
     
-            <div class="button-wrapper">
-                <button type="submit" disabled class="blue-btn" id="edit-btn" onclick="hideShow('bot-wrapper', 'edition-wrapper'), transferBot()">Editar</button>
+                <div class="link-wrapper">
+                    <button type="submit" disabled class="grey-btn">Ver Servidores <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+                </div>
             </div>
         </div>
     </div>

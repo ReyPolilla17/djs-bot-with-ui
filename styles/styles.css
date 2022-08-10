@@ -159,6 +159,14 @@ input:disabled {
     border-radius: 3px;
 }
 
+.bot-wrapper > .bot-extras-wrapper > .extras-options {
+    display: flex;
+}
+
+.bot-wrapper > .bot-extras-wrapper > .extras-options > .link-wrapper {
+    padding-left: 20px;
+}
+
 .edition-wrapper > .edition-header {
     display: flex;
     justify-content: space-between;

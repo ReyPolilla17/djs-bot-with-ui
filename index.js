@@ -5,7 +5,14 @@ const path = require('path');
 const fs = require('fs');
 let client;
 
+/*
+    Ideas:
+        Sección donde se vean los servidores
+        Sección donde se vean los errores
+*/
+
 app.disableHardwareAcceleration();
+
 app.whenReady().then(() => {
     const wind = new BrowserWindow({
         width: 840,
@@ -16,7 +23,7 @@ app.whenReady().then(() => {
         }
     });
 
-    // wind.removeMenu();
+    wind.removeMenu();
     wind.loadFile('index.html');
 
     ipcMain.on('clientStartup', (name, disc, avatar, status, activity, type) => {
