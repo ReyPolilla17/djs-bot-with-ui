@@ -163,7 +163,7 @@ input:disabled {
     display: flex;
 }
 
-.bot-wrapper > .bot-extras-wrapper > .extras-options > .link-wrapper {
+.bot-wrapper > .bot-extras-wrapper > .extras-options > .reset-button {
     padding-left: 20px;
 }
 

@@ -26,7 +26,13 @@ ipcRenderer.on('clientStartup', (event, name, disc, avatar, status, activity, ty
     document.querySelector('.bot-disc').innerText = `#${disc}`;
     document.getElementsByClassName('avatar')[0].src = avatar;
     document.getElementsByClassName('avatar')[1].src = avatar;
-    document.querySelector('#edit-btn').disabled = false
+    document.querySelector('#edit-btn').disabled = false;
+    document.querySelector('#reset-btn').disabled = false;
+
+    document.querySelector('#reset-btn').innerText = 'Reiniciar Bot';
+    document.querySelector('.bot-starting').innerText = 'Tu bot está iniciando sesión...';
+
+    document.title = name;
 
     switch(status) {
         case 'online':

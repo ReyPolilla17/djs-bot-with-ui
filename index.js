@@ -7,6 +7,7 @@ let client;
 
 /*
     Ideas:
+        Cambiar el favicon
         Sección donde se vean los servidores
         Sección donde se vean los errores
 */
@@ -23,7 +24,7 @@ app.whenReady().then(() => {
         }
     });
 
-    wind.removeMenu();
+    // wind.removeMenu();
     wind.loadFile('index.html');
 
     ipcMain.on('clientStartup', (name, disc, avatar, status, activity, type) => {
@@ -73,6 +74,17 @@ app.whenReady().then(() => {
             console.log(err);
             wind.webContents.send('errLogin', error, id);
         });
+    });
+
+    ipcMain.on('resetClient', () => {
+        const token = client.token;
+
+        try {
+            client.destroy();
+        } catch(e) {}
+
+        client = createClient.execute();
+        client.login(token);
     });
 
     ipcMain.on('openFile', async () => {

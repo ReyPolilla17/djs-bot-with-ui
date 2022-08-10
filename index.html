@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bot</title>
+    <title>Iniciando sesión...</title>
     <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">   
 
     <link rel="stylesheet" href="./styles/styles.css">
@@ -302,15 +302,17 @@
             </div>
 
             <div class="extras-options">
-                <div class="button-wrapper">
+                <div class="submit-button">
                     <button type="submit" disabled class="blue-btn" id="edit-btn" onclick="hideShow('bot-wrapper', 'edition-wrapper'), transferBot()">Editar</button>
                 </div>
     
-                <div class="link-wrapper">
-                    <button type="submit" disabled class="grey-btn">Ver Servidores <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+                <div class="reset-button">
+                    <button type="submit" disabled class="red-btn" id="reset-btn" onclick="resetClient()">Reiniciar Bot</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- <button type="submit" disabled class="grey-btn">Ver Servidores <i class="fa-solid fa-arrow-up-right-from-square"></i></button> -->
 </body>
 </html>

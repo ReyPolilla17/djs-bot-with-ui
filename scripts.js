@@ -180,6 +180,18 @@ function editBot() {
     renderer.send('editBot', newAvatar, newStatus, newActivity, newActivityName, newName);
 }
 
+function resetClient() {
+    renderer.send('resetClient');
+    
+    document.querySelector('#reset-btn').disabled = true;
+    document.querySelector('#edit-btn').disabled = true;
+
+    document.querySelector('.bot-starting').classList.remove('hiden');
+    document.querySelector('.bot-starting').innerText = 'Tu bot está reiniciando...'
+
+    document.querySelector('#login').classList.remove('bot-login');
+}
+
 function disable(id) {
     document.querySelector(`#${id}`).disabled = true;
     document.querySelector(`#${id}`).value = '';

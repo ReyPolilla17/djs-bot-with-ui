@@ -23,6 +23,7 @@ module.exports = {
         });
     
         client.on('ready', () => {
+            process.title = client.user.username;
             console.log(`Logged in as ${client.user.username}!`);
     
             const configFiles = fs.readFileSync(`./config.json`);
