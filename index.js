@@ -81,9 +81,9 @@ app.whenReady().then(() => {
             wind.webContents.send('imagePath', filePaths[0]);
         }
     });
-});
 
-if(token) {
-    client = createClient.execute();
-    client.login(token);
-}
+    if(token) {
+        client = createClient.execute();
+        client.login(token);
+    }
+});
