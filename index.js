@@ -74,6 +74,8 @@ app.whenReady().then(() => {
     });
 
     ipcMain.on('submitToken', (event, token, error, id) => {
+        let Rtoken = client.token ? client.token : null;
+
         try {
             client.destroy();
         } catch(e) {}
@@ -91,6 +93,12 @@ app.whenReady().then(() => {
         }).catch(err => {
             console.log(err);
             wind.webContents.send('errLogin', error, id);
+
+            if(Rtoken !== null) {
+                client.login(Rtoken).catch(err => {
+                    console.log(err);
+                });
+            }
         });
     });
 
@@ -101,8 +109,12 @@ app.whenReady().then(() => {
             client.destroy();
         } catch(e) {}
 
+        console.log(token);
+
         client = createClient.execute();
-        client.login(token);
+        client.login(token).catch(err => {
+            console.log(err);
+        });
     });
 
     ipcMain.on('openFile', async () => {

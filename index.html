@@ -39,7 +39,59 @@
             Ocurrió un error, intenta con otro token...
         </div>
     </div>
-       
+
+    <div class="bot-wrapper">
+        <div class="bot-stats-wrapper">
+            <div class="bot-starting">
+                Tu bot está iniciando sesión...
+            </div>
+    
+            <div id="login" class="hiden">
+                <div class="bot-icon">
+                    <img src="https://cdn.discordapp.com/embed/avatars/3.png" alt="Bot Icon" class="avatar">
+                </div>
+    
+                <div class="bot-data-wrapper">
+                    <div class="bot-user">
+                        <div class="bot-name">Bot Name</div>
+    
+                        <div class="bot-disc">
+                            #1234
+                        </div>
+                    </div>
+        
+                    <div class="bot-status-wrapper">
+                        <div class="status-offline" id="status">
+                            <div class="helper"></div>
+                        </div>
+        
+                        <div class="activity-wrapper">
+                            <div class="activity-type"></div>
+    
+                            <div class="activity-name"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="bot-extras-wrapper">
+            <div class="edition-warning">
+                Algundos cambios pueden tardar en aplicarse al bot.
+            </div>
+
+            <div class="extras-options">
+                <div class="submit-button">
+                    <button type="submit" disabled class="blue-btn" id="edit-btn" onclick="hideShow('bot-wrapper', 'edition-wrapper'), transferBot()">Editar</button>
+                </div>
+    
+                <div class="reset-button">
+                    <button type="submit" disabled class="red-btn" id="reset-btn" onclick="resetClient()">Reiniciar Bot</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="edition-wrapper hiden">
         <div class="edition-header">
             <div class="site-title">
@@ -257,58 +309,6 @@
     
             <div class="error-message" id="change-error">
                 Ocurrió un error, intenta con otro token...
-            </div>
-        </div>
-    </div>
-
-    <div class="bot-wrapper">
-        <div class="bot-stats-wrapper">
-            <div class="bot-starting">
-                Tu bot está iniciando sesión...
-            </div>
-    
-            <div id="login" class="hiden">
-                <div class="bot-icon">
-                    <img src="https://cdn.discordapp.com/embed/avatars/3.png" alt="Bot Icon" class="avatar">
-                </div>
-    
-                <div class="bot-data-wrapper">
-                    <div class="bot-user">
-                        <div class="bot-name">Bot Name</div>
-    
-                        <div class="bot-disc">
-                            #1234
-                        </div>
-                    </div>
-        
-                    <div class="bot-status-wrapper">
-                        <div class="status-offline" id="status">
-                            <div class="helper"></div>
-                        </div>
-        
-                        <div class="activity-wrapper">
-                            <div class="activity-type"></div>
-    
-                            <div class="activity-name"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-        <div class="bot-extras-wrapper">
-            <div class="edition-warning">
-                Algundos cambios pueden tardar en aplicarse al bot.
-            </div>
-
-            <div class="extras-options">
-                <div class="submit-button">
-                    <button type="submit" disabled class="blue-btn" id="edit-btn" onclick="hideShow('bot-wrapper', 'edition-wrapper'), transferBot()">Editar</button>
-                </div>
-    
-                <div class="reset-button">
-                    <button type="submit" disabled class="red-btn" id="reset-btn" onclick="resetClient()">Reiniciar Bot</button>
-                </div>
             </div>
         </div>
     </div>
