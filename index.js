@@ -1,12 +1,30 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron');
-const { token } = require('./config.json');
 const createClient = require('./client');
 const path = require('path');
 const fs = require('fs');
 let client;
 
+const confDir = fs.readdirSync('./').find(file => file === `config.json`);
+	
+if(!confDir) {
+    const base = {
+        presence: {
+            status: "online",
+            activity: 0,
+            name: null
+        }
+    };
+
+    fs.writeFileSync(`./config.json`, JSON.stringify(base, null, 4));
+} 
+
+let config = fs.readFileSync(`./config.json`);
+config = JSON.parse(config);
+
+const { token } = config;
+
 /*
-    Ideas:
+    Pendientes:
         Cambiar el favicon
         Sección donde se vean los servidores
         Sección donde se vean los errores

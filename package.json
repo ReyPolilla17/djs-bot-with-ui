@@ -1,7 +1,7 @@
 {
   "name": "bot-con-interfaz",
   "version": "1.0.0",
-  "description": "un rápido test",
+  "description": "A discord bot that uses a UI instead of the boring console.",
   "main": "index.js",
   "scripts": {
     "start": "electron index.js"
