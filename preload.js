@@ -29,7 +29,7 @@ ipcRenderer.on('clientStartup', (event, name, disc, avatar, status, activity, ty
     document.querySelector('#edit-btn').disabled = false;
     document.querySelector('#reset-btn').disabled = false;
 
-    document.querySelector('#reset-btn').innerText = 'Reiniciar Bot';
+    document.querySelector('#reset-btn').innerText = 'Reiniciar';
     document.querySelector('.bot-starting').innerText = 'Tu bot está iniciando sesión...';
 
     document.title = name;

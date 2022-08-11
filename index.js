@@ -28,6 +28,9 @@ const { token } = config;
         Cambiar el favicon
         Sección donde se vean los servidores
         Sección donde se vean los errores
+        Hacer más facil de entender el como subir imagenes en el area de edición
+        revisar la opción de compitiendo porque lo guarda como jugando
+        ver si se puede agregar la opción de estado personalizado   
 */
 
 app.disableHardwareAcceleration();
@@ -74,7 +77,7 @@ app.whenReady().then(() => {
     });
 
     ipcMain.on('submitToken', (event, token, error, id) => {
-        let Rtoken = client.token ? client.token : null;
+        let Rtoken = client ? client.token : null;
 
         try {
             client.destroy();
@@ -108,8 +111,6 @@ app.whenReady().then(() => {
         try {
             client.destroy();
         } catch(e) {}
-
-        console.log(token);
 
         client = createClient.execute();
         client.login(token).catch(err => {

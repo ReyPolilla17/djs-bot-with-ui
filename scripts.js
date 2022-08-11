@@ -52,6 +52,7 @@ function transferBot() {
     document.querySelector('#avatar-error').style.visibility = 'hidden';
     document.querySelector('#activity-error').style.visibility = 'hidden';
     document.querySelector('#name-error').style.visibility = 'hidden';
+    document.querySelector('#change-error').style.visibility = 'hidden';
 
     switch(status) {
         case ('status-online'):

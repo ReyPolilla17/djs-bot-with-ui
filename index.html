@@ -48,7 +48,7 @@
     
             <div id="login" class="hiden">
                 <div class="bot-icon">
-                    <img src="https://cdn.discordapp.com/embed/avatars/3.png" alt="Bot Icon" class="avatar">
+                    <img src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Bot Icon" class="avatar">
                 </div>
     
                 <div class="bot-data-wrapper">
@@ -86,7 +86,7 @@
                 </div>
     
                 <div class="reset-button">
-                    <button type="submit" disabled class="red-btn" id="reset-btn" onclick="resetClient()">Reiniciar Bot</button>
+                    <button type="submit" disabled class="red-btn" id="reset-btn" onclick="resetClient()">Reiniciar</button>
                 </div>
             </div>
         </div>
@@ -105,8 +105,8 @@
         
         <div class="options-wrapper">
             <div class="avatar-wrapper">
-                <img src="https://cdn.discordapp.com/embed/avatars/3.png" alt="Bot Icon" class="avatar">
-                <button type="submit" class="red-btn" onclick="resetAvatar()">Reiniciar</button>
+                <img src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Bot Icon" class="avatar">
+                <button type="submit" class="red-btn" onclick="resetAvatar()">Reiniciar Avatar</button>
             </div>
             
             <div class="edition-form-wrapper">
@@ -118,7 +118,7 @@
                     <div class="form-wrapper">
                         <div class="warn-wrapper">
                             <div class="input-wrapper">
-                                <input type="text" name="avatar-url" id="avatar-input" placeholder="URL del avatar" onclick="resetSubmit('avatar-error')" onkeypress="if(event.key === 'Enter') enterLink('avatar-input')">
+                                <input type="text" name="avatar-url" id="avatar-input" placeholder="URL del avatar" onclick="resetSubmit('avatar-error')" onkeypress="resetSubmit('avatar-error'); if(event.key === 'Enter')enterLink('avatar-input')">
                             </div>
                             
                             <div class="error-message" id="avatar-error">
