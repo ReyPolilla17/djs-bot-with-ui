@@ -46,7 +46,7 @@ module.exports = {
                         act = ActivityType.Watching;
                         break;
                     case 5:
-                        act = ActivityType.Competing
+                        act = ActivityType.Competing;
                     default:
                         act = null
                         break;

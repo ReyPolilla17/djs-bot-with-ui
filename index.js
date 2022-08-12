@@ -30,7 +30,10 @@ const { token } = config;
         Sección donde se vean los errores
         Hacer más facil de entender el como subir imagenes en el area de edición
         revisar la opción de compitiendo porque lo guarda como jugando
-        ver si se puede agregar la opción de estado personalizado   
+        ver si se puede agregar la opción de estado personalizado
+        quitar compitiendo y transmitiendo de las opciones de actividades ya que son practicamente lo mismo que jugando
+    Bugs:
+        el preload no ejecuta correctamente la función de inicio cuando se abre por primera vez
 */
 
 app.disableHardwareAcceleration();
