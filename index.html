@@ -63,6 +63,7 @@
                     <div class="bot-status-wrapper">
                         <div class="status-offline" id="status">
                             <div class="helper"></div>
+                            <i class="fa-solid fa-play"></i>
                         </div>
         
                         <div class="activity-wrapper">
@@ -272,9 +273,15 @@
 
                 <div class="edition-bottom">
                     <div class="warn-wrapper">
-                        <div class="botname-edition-wrapper">    
-                            <input type="text" name="bot-name" id="botname-input" placeholder="Nombre" onclick="resetSubmit('name-error')">
-                        </div>
+                        <!-- <div class="forms"> -->
+                            <div class="botname-edition-wrapper">
+                                <input type="text" name="bot-name" id="botname-input" placeholder="Nombre" onclick="resetSubmit('name-error')">
+                            </div>
+<!--     
+                            <div class="twitch-user-wrapper">    
+                                <input type="text" name="twitch-user" id="twitch-user-input" placeholder="Usuario de Twitch" onclick="resetSubmit('name-error')">
+                            </div>
+                        </div> -->
 
                         <div class="error-message" id="name-error">
                             Error

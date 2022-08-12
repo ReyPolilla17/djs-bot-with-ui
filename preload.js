@@ -73,7 +73,7 @@ ipcRenderer.on('clientStartup', (event, name, disc, avatar, status, activity, ty
                 document.querySelector('.activity-name').innerText = activity;
                 break;
             case 5:
-                document.querySelector('.activity-type').innerText = 'Compitiendo';
+                document.querySelector('.activity-type').innerText = 'Compitiendo en';
                 document.querySelector('.activity-name').innerText = activity;
                 break;
             default:

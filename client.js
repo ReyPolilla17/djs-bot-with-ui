@@ -128,15 +128,16 @@ module.exports = {
                         act = ActivityType.Watching;
                         break;
                     case 5:
-                        act = ActivityType.Competing
+                        act = ActivityType.Competing;
+                        break;
                     default:
                         act = null
                         break;
                 }
-    
+
                 client.user.setPresence({ activities: [{ name: activityName, type: act }], status: status });
             } else {
-                client.user.setPresence({ activity: null })
+                client.user.setPresence({ activity: null });
                 client.user.setStatus(status);
             }
     

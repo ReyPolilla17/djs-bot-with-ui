@@ -82,7 +82,7 @@ function transferBot() {
         case ('Viendo'):
             document.querySelector(`#activity-selector`).firstElementChild.innerHTML = document.querySelector(`#a-watching`).firstElementChild.innerHTML;
             break;
-        case ('Compitiendo'):
+        case ('Compitiendo en'):
             document.querySelector(`#activity-selector`).firstElementChild.innerHTML = document.querySelector(`#a-competing`).firstElementChild.innerHTML;
             break;
         default:
