@@ -1,22 +1,10 @@
 # Discord-bot-with-user-interphase
 
-This app will give your discord bot a UI so you can update it without having to stop it and start it every time, right now you can chenge the bot's status, presence, name and avatar, but I have more plans to this app.
+This app will give your discord bot a UI so you can update it without having to stop it and start it every time, right now you can change the bot's status, presence, name and avatar, but I'm working in more stuff for this app.
 
-To start the app just double click to [start.bat](./start.bat) or in the console run npm run start.
-Remember to use npm install after downloading the app to install all the libraries.
+> _Remember to run npm install after downloading the app to install all the libraries._
 
-### Known issues:
-> **When I run the app the bot starts, but the app freezes**
-```
-Sometimes the first time you open the app it cant get the preload.js file so it wont do anything.
-Just close and open again the app.
-```
-> **Streaming displays as playing in discord**
-```
-Right now if you set the bot's activity to streaming you won't be able to set a twitch channel.
-That is causing the error but you can easily change the value of the option user in the field presence in config.json to your 
-twitch channel and restart the app to change it in discord (I'll fix that later).
-```
+To start the app just double click [start.bat](./start.bat) or in the console run npm run start.
 
 ### How does this work?
 > **Startup:**
@@ -47,6 +35,19 @@ If you don't see a change applied to your bot first wait some time, sometimes it
 (such as avatar or name) if that doesn't work, then you can press the reset button in the startpage this will destroy the bot and
 then create it again, the app will also update in case there was an error there, if you see an error with the app that repeats
 constantly, let me know so I can try to fix it!
+```
+
+### Known issues:
+> **When I run the app the bot starts, but the app freezes**
+```
+Sometimes the first time you open the app it cant get the preload.js file so it wont do anything.
+Just close and open again the app.
+```
+> **Streaming displays as playing in discord**
+```
+Right now if you set the bot's activity to streaming you won't be able to set a twitch channel.
+That is causing the error but you can easily change the value of the option user in the field presence in config.json to your 
+twitch channel and restart the app to change it in discord (I'll fix that later).
 ```
 
 ### Looking good, what now?
