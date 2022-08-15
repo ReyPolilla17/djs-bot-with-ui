@@ -6,10 +6,12 @@ To start the app just run start.bat or in the console run npm run start.
 Remember to use npm install after downloading the app to install all the libraries.
 
 Known issues:
+```
     - Sonetimes the first time you open the app it cant get the preload.js file so it wont do anything.
         Just close and open again the app.
     - Right now if you set the bot's activity to streaming you won't be able to set the twitch channel.
         Change the value of the option user in the field presence in config.json (I'll change that later).
+```
 
 How does this work?
     - Startup: Maybe you have noticed that there is no config.json file or anywhere to save your bot's token, well this is basically because it will be created after you start the app for the first time, and when this happen the app will ask you to insert your bot's token, after that you will be able (by now) to change thr basic details of your bot's precence (status, activity and activity name) and to change your bot's name and avatar.
