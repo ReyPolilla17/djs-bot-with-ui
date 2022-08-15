@@ -2,7 +2,7 @@
 
 This app will give your discord bot a UI so you can update it without having to stop it and start it every time, right now you can chenge the bot's status, presence, name and avatar, but I have more plans to this app.
 
-To start the app just double click to [start.bat](../../start.bat) or in the console run npm run start.
+To start the app just double click to [start.bat](./start.bat) or in the console run npm run start.
 Remember to use npm install after downloading the app to install all the libraries.
 
 ### Known issues:
@@ -49,5 +49,13 @@ then create it again, the app will also update in case there was an error there,
 constantly, let me know so I can try to fix it!
 ```
 
-###Looking good, what now?
-By the moment I havent added a lot of features that I would like to in the future, but 
+### Looking good, what now?
+By the moment I havent added a lot of features, so here is the list (I may be updating this while I add or want the features so feel free to make any sugestion).
+> **Error section:**
+```
+A section where the bot's errors are displayed.
+```
+> **Guilds section:**
+```
+A section where you will be able to see the guilds your bot is in and have the option to join or make your bot leave it.
+```
