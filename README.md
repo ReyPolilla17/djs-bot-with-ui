@@ -12,9 +12,6 @@ Known issues:
         Change the value of the option user in the field presence in config.json (I'll change that later).
 
 How does this work?
-```
-Holo
-```
     - Startup: Maybe you have noticed that there is no config.json file or anywhere to save your bot's token, well this is basically because it will be created after you start the app for the first time, and when this happen the app will ask you to insert your bot's token, after that you will be able (by now) to change thr basic details of your bot's precence (status, activity and activity name) and to change your bot's name and avatar.
 
     - Bot edition: After successfully logging in your bot you'll be able to see your bot's basic info in the left side od the app and in the other side you'll see a warning and two buttons: the edit button and the reser button, if you select the edit button the app will display an edition pannel, in the top-right corner there is a cancel button to cancel every change you were working on, the rest is quite straight forward, just fill the fields you want to change and done! click the edit button in the bottom of the panel and all the changes will be applied to your bot unless you give an unvalid value to any field, in that case the app will let you know. In the bottom of the page will also appear a field to change your bot if you want.
