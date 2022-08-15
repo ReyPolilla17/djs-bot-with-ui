@@ -63,6 +63,7 @@ ipcRenderer.on('clientStartup', (event, name, disc, avatar, status, activity, ty
             case 1:
                 document.querySelector('.activity-type').innerText = 'Transmitiendo';
                 document.querySelector('.activity-name').innerText = activity;
+                document.querySelector('#status').classList = 'status-streaming';
                 break;
             case 2:
                 document.querySelector('.activity-type').innerText = 'Escuchando';

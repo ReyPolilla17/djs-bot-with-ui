@@ -216,35 +216,35 @@
                                 <div class="options">
                                     <div class="option" id="a-none" onclick="select('activity-selector', 'a-none'), disable('activity-input')">
                                         <div class="info">
-                                            <div class="0"></div>
+                                            <div class="6"></div>
                                             <div class="text">Ninguna</div>
                                         </div>
                                     </div>
 
                                     <div class="option" id="a-playing" onclick="select('activity-selector', 'a-playing'), enable('activity-input')">
                                         <div class="info">
-                                            <div class="1"></div>
+                                            <div class="0"></div>
                                             <div class="text">Jugando</div>
                                         </div>
                                     </div>
 
                                     <div class="option" id="a-streaming" onclick="select('activity-selector', 'a-streaming'), enable('activity-input')">
                                         <div class="info">
-                                            <div class="2"></div>
+                                            <div class="1"></div>
                                             <div class="text">Transmitiendo</div>
                                         </div>
                                     </div>
 
                                     <div class="option" id="a-listening" onclick="select('activity-selector', 'a-listening'), enable('activity-input')">
                                         <div class="info">
-                                            <div class="3"></div>
+                                            <div class="2"></div>
                                             <div class="text">Escuchando</div>
                                         </div>
                                     </div>
 
                                     <div class="option" id="a-watching" onclick="select('activity-selector', 'a-watching'), enable('activity-input')">
                                         <div class="info">
-                                            <div class="4"></div>
+                                            <div class="3"></div>
                                             <div class="text">Viendo</div>
                                         </div>
                                     </div>
@@ -275,10 +275,9 @@
                     <div class="warn-wrapper">
                         <!-- <div class="forms"> -->
                             <div class="botname-edition-wrapper">
-                                <input type="text" name="bot-name" id="botname-input" placeholder="Nombre" onclick="resetSubmit('name-error')">
+                                <input type="text" name="bot-name" id="botname-input" placeholder="Nombre" maxlength="32" onclick="resetSubmit('name-error')">
                             </div>
-<!--     
-                            <div class="twitch-user-wrapper">    
+                        <!-- <div class="twitch-user-wrapper">    
                                 <input type="text" name="twitch-user" id="twitch-user-input" placeholder="Usuario de Twitch" onclick="resetSubmit('name-error')">
                             </div>
                         </div> -->

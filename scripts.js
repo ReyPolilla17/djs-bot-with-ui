@@ -133,8 +133,10 @@ function resetAvatar() {
 function editBot() {
     const newAvatar = document.getElementsByClassName('avatar')[0].src === document.getElementsByClassName('avatar')[1].src ? null : document.getElementsByClassName('avatar')[1].src;
     const newActivityName = document.querySelector('#activity-input').value === '' ? null : document.querySelector('#activity-input').value;
-    let newName = document.querySelector('#botname-input').value === '' ? null : document.querySelector('#botname-input').value;
     const newActivity = parseInt(document.querySelector('#activity-selector').firstElementChild.firstElementChild.className);
+    
+    let newUser = null; // document.querySelector('#twitchuser-input').value === '' ? null : document.querySelector('#twitchuser-input').value;
+    let newName = document.querySelector('#botname-input').value === '' ? null : document.querySelector('#botname-input').value;
     let newStatus = parseInt(document.querySelector('#status-selector').firstElementChild.firstElementChild.className);
 
     document.querySelector('#confirm-edit').disabled = true;
@@ -155,10 +157,15 @@ function editBot() {
         err ++;
     }
 
-    if(newActivity !== 0 && newActivityName === null) {
+    if(newActivity !== 6 && !newActivityName) {
         document.querySelector('#activity-error').style.visibility = 'visible';
         err ++;
     }
+
+    // if(newActivity !== 6 && newActivityName && !newUser) {
+    //     document.querySelector('#rwitchuser-error').style.visibility = 'visible';
+    //     err ++;
+    // }
 
     switch(newStatus) {
         case 1:
@@ -178,7 +185,7 @@ function editBot() {
     if(err > 0) return document.querySelector('#confirm-edit').disabled = false;
     if(document.querySelector('#avatar-error').style.visibility === 'visible') return document.querySelector('#confirm-edit').disabled = false;
 
-    renderer.send('editBot', newAvatar, newStatus, newActivity, newActivityName, newName);
+    renderer.send('editBot', newAvatar, newStatus, newActivity, newActivityName, newName, newUser);
 }
 
 function resetClient() {

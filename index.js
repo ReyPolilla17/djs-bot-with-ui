@@ -4,25 +4,6 @@ const path = require('path');
 const fs = require('fs');
 let client;
 
-const confDir = fs.readdirSync('./').find(file => file === `config.json`);
-	
-if(!confDir) {
-    const base = {
-        presence: {
-            status: "online",
-            activity: 0,
-            name: null
-        }
-    };
-
-    fs.writeFileSync(`./config.json`, JSON.stringify(base, null, 4));
-} 
-
-let config = fs.readFileSync(`./config.json`);
-config = JSON.parse(config);
-
-const { token } = config;
-
 /*
     Pendientes:
         Cambiar el favicon
@@ -30,15 +11,35 @@ const { token } = config;
         Sección donde se vean los errores
         Hacer más facil de entender el como subir imagenes en el area de edición
         agregar un area que pida un usuario de twitch en caso de elegir transmitiendo
-        codificar todo lo de transmitiendo
+        codificar todo lo de transmitiendo (falta agregarle sección en el area de edición y todo lo que eso conlleva)
         reescribir html, css y scripts que hagan que se vean los elementos para no usar scripts diferentes para todo
-    Bugs:
-        el preload no ejecuta correctamente la función de inicio cuando se abre por primera vez
 */
 
-app.disableHardwareAcceleration();
+function consultConfig() {
+    const confDir = fs.readdirSync('./').find(file => file === `config.json`);
+	
+    if(!confDir) {
+        const base = {
+            presence: {
+                status: "online",
+                activity: 0,
+                user: null,
+                name: null
+            }
+        };
 
-app.whenReady().then(() => {
+        fs.writeFileSync(`./config.json`, JSON.stringify(base, null, 4));
+    } 
+
+    let config = fs.readFileSync(`./config.json`);
+    config = JSON.parse(config);
+
+    const { token } = config;
+
+    return token;
+}
+
+function createWindow() {
     const wind = new BrowserWindow({
         width: 840,
         height: 600,
@@ -48,8 +49,23 @@ app.whenReady().then(() => {
         }
     });
 
-    // wind.removeMenu();
+    wind.removeMenu();
     wind.loadFile('index.html');
+
+    return wind;
+}
+
+app.disableHardwareAcceleration();
+app.whenReady().then(() => {
+    let wind = createWindow();
+    let token = consultConfig();
+
+    app.on('activate', () => {
+        // checar en una VM o algo el como se ejecuta esto, no tengo idea de que pasaría...
+        if (BrowserWindow.getAllWindows().length === 0) {
+            wind = createWindow();
+        }
+    });
 
     ipcMain.on('clientStartup', (name, disc, avatar, status, activity, type) => {
         wind.webContents.send('clientStartup', name, disc, avatar, status, activity, type);
@@ -67,8 +83,24 @@ app.whenReady().then(() => {
         wind.webContents.send('usedName');
     });
 
-    ipcMain.on('editBot', (event, avatar, status, activity, activityName, name) => {
-        client.emit('change', avatar, status, activity, activityName, name);
+    ipcMain.on('editBot', (event, avatar, status, activity, activityName, name, user) => {
+        let usr = user;
+
+        if(usr) {
+            let config = fs.readFileSync(`./config.json`);
+            config = JSON.parse(config);
+
+            config.presence.user = usr;
+
+            fs.writeFileSync('./config.json', JSON.stringify(config, null, 4));
+        } else {
+            let config = fs.readFileSync(`./config.json`);
+            config = JSON.parse(config);
+
+            usr = config.presence.user;
+        }
+        
+        client.emit('change', avatar, status, activity, activityName, name, usr);
     });
 
     ipcMain.on('successEdition', () => {
@@ -139,4 +171,11 @@ app.whenReady().then(() => {
         client = createClient.execute();
         client.login(token);
     }
+});
+
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
+    client.destroy();
 });

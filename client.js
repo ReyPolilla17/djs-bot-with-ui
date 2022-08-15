@@ -1,4 +1,4 @@
-const { Client, GatewayIntentBits, Partials, ActivityType } = require('discord.js');
+const { Client, GatewayIntentBits, Partials } = require('discord.js');
 const { ipcMain } = require('electron');
 const fs = require('fs');
 
@@ -29,30 +29,14 @@ module.exports = {
             const configFiles = fs.readFileSync(`./config.json`);
             let config = JSON.parse(configFiles);
     
-            if(config.presence.name !== null) {
+            if(config.presence.name) {
                 let act = config.presence.activity;
-    
-                switch(act) {
-                    case 1:
-                        act = ActivityType.Playing;
-                        break;
-                    case 2:
-                        act = ActivityType.Streaming;
-                        break;
-                    case 3:
-                        act = ActivityType.Listening;
-                        break;
-                    case 4:
-                        act = ActivityType.Watching;
-                        break;
-                    case 5:
-                        act = ActivityType.Competing;
-                    default:
-                        act = null
-                        break;
+
+                if(config.presence.user) {
+                    client.user.setPresence({ activities: [{ name: config.presence.name, type: act, url: `https://twitch.tv/${config.presence.user}` }], status: config.presence.status });
+                } else {
+                    client.user.setPresence({ activities: [{ name: config.presence.name, type: act }], status: config.presence.status });
                 }
-    
-                client.user.setPresence({ activities: [{ name: config.presence.name, type: act }], status: config.presence.status });
             } else {
                 client.user.setStatus(config.presence.status);
             }
@@ -78,12 +62,12 @@ module.exports = {
             }
         });
     
-        client.on('change', async (avatar, status, activity, activityName, name) => {
+        client.on('change', async (avatar, status, activity, activityName, name, user) => {
             let usrName = client.user.username;
             let usrAvtr = client.user.avatarURL();
             let errCnt = 0;
     
-            if(avatar !== null) {
+            if(avatar) {
                 let avtr = avatar;
     
                 if(avtr.startsWith('file:///')) {
@@ -99,7 +83,7 @@ module.exports = {
                 });
             }
     
-            if(name !== null) {
+            if(name) {
                 await client.user.setUsername(name).then(() => {
                     usrName = name;
                 }).catch((err) => {
@@ -112,30 +96,12 @@ module.exports = {
                 });
             }
     
-            if(activityName !== null) {
-                let act = activity;
-                switch(act) {
-                    case 1:
-                        act = ActivityType.Playing;
-                        break;
-                    case 2:
-                        act = ActivityType.Streaming;
-                        break;
-                    case 3:
-                        act = ActivityType.Listening;
-                        break;
-                    case 4:
-                        act = ActivityType.Watching;
-                        break;
-                    case 5:
-                        act = ActivityType.Competing;
-                        break;
-                    default:
-                        act = null
-                        break;
+            if(activityName) {
+                if(activity === 1 && user) {
+                    client.user.setPresence({ activities: [{ name: activityName, type: activity, url: `https://twitch.tv/${user}` }], status: status });
+                } else {
+                    client.user.setPresence({ activities: [{ name: activityName, type: activity }], status: status });
                 }
-
-                client.user.setPresence({ activities: [{ name: activityName, type: act }], status: status });
             } else {
                 client.user.setPresence({ activity: null });
                 client.user.setStatus(status);
