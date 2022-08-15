@@ -19,7 +19,7 @@ ipcRenderer.on('succesLogin', (event, id) => {
     document.querySelector(`#${id}`).value = '';
 });
 
-ipcRenderer.on('clientStartup', (event, name, disc, avatar, status, activity, type) => {
+ipcRenderer.on('clientStartup', (event, name, disc, avatar, status, activity, type, user) => {
     document.querySelector('.bot-starting').classList.add('hiden');
     document.querySelector('#login').classList.add('bot-login');
     document.querySelector('.bot-name').innerText = name;
@@ -33,6 +33,10 @@ ipcRenderer.on('clientStartup', (event, name, disc, avatar, status, activity, ty
     document.querySelector('.bot-starting').innerText = 'Tu bot está iniciando sesión...';
 
     document.title = name;
+
+    if(user) {
+        document.querySelector('#default-user').classList = user;
+    }
 
     switch(status) {
         case 'online':

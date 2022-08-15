@@ -40,6 +40,7 @@ body {
 }
 
 input {
+    width: 90%;
     background-color: #18191c;
     color: #686d73;
     font-size: 1.2rem;
@@ -185,6 +186,7 @@ input:disabled {
 .edition-wrapper > .options-wrapper {
     display: flex;
     border-radius: 3px;
+    padding: 0px 20px;
     background-color: #18191c;
 }
 
@@ -194,10 +196,12 @@ input:disabled {
     align-items: center;
     justify-content: space-around;
     margin: 20px;
+    margin-left: 0px;
 }
 
 .edition-wrapper > .options-wrapper > .edition-form-wrapper {
     margin: 20px;
+    margin-right: 0px;
     width: 100%;
 }
 
@@ -235,6 +239,18 @@ input:disabled {
     margin: 0px 10px;
 }
 
+.upload-avatar-wrapper {
+    display: flex;
+}
+
+.upload-avatar-wrapper > .input-wrapper {
+    width: 370px;
+}
+
+.upload-avatar-wrapper input {
+    width: 100%;
+}
+
 .edition-bottom {
     display: flex;
     justify-content: space-between;
@@ -242,6 +258,7 @@ input:disabled {
 
 .edition-bottom input {
     background-color: #202225;
+    width: 75%;
     outline: none;
 }
 
@@ -260,10 +277,6 @@ input:disabled {
 
 .selects-wrapper > .status-menu {
     margin-right: 10px;
-}
-
-#activity-input {
-    width: 90%;
 }
 
 .hiden {

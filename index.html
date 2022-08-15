@@ -118,21 +118,19 @@
                     
                     <div class="form-wrapper">
                         <div class="warn-wrapper">
-                            <div class="input-wrapper">
-                                <input type="text" name="avatar-url" id="avatar-input" placeholder="URL del avatar" onclick="resetSubmit('avatar-error')" onkeypress="resetSubmit('avatar-error'); if(event.key === 'Enter')enterLink('avatar-input')">
+                            <div class="upload-avatar-wrapper">
+                                <div class="input-wrapper">
+                                    <input type="text" name="avatar-url" id="avatar-input" placeholder="URL del avatar" onclick="resetSubmit('avatar-error')" onkeypress="if(event.key === 'Enter')openPath()">
+                                </div>
+    
+                                <div class="button-wrapper">
+                                    <button type="submit" class="blue-btn" onclick="openPath()">Subir</button>
+                                </div>
                             </div>
                             
                             <div class="error-message" id="avatar-error">
                                 Error
                             </div>
-                        </div>
-                        
-                        <div class="text-area">
-                            o
-                        </div>
-                        
-                        <div class="button-wrapper">
-                            <button type="submit" class="blue-btn" onclick="openPath()">Subir</button>
                         </div>
                     </div>
                 </div>
@@ -206,7 +204,7 @@
                             <div class="menu">
                                 <div class="placeholder" id="activity-selector">
                                     <div class="info">
-                                        <div class="0"></div>
+                                        <div class="6"></div>
                                         <div class="text">Ninguna</div>
                                     </div>
                                     
@@ -214,42 +212,42 @@
                                 </div>
 
                                 <div class="options">
-                                    <div class="option" id="a-none" onclick="select('activity-selector', 'a-none'), disable('activity-input')">
+                                    <div class="option" id="a-none" onclick="select('activity-selector', 'a-none'), disable('activity-input'), hide('tuser-wrapper')">
                                         <div class="info">
                                             <div class="6"></div>
                                             <div class="text">Ninguna</div>
                                         </div>
                                     </div>
 
-                                    <div class="option" id="a-playing" onclick="select('activity-selector', 'a-playing'), enable('activity-input')">
+                                    <div class="option" id="a-playing" onclick="select('activity-selector', 'a-playing'), enable('activity-input'), hide('tuser-wrapper')">
                                         <div class="info">
                                             <div class="0"></div>
                                             <div class="text">Jugando</div>
                                         </div>
                                     </div>
 
-                                    <div class="option" id="a-streaming" onclick="select('activity-selector', 'a-streaming'), enable('activity-input')">
+                                    <div class="option" id="a-streaming" onclick="select('activity-selector', 'a-streaming'), enable('activity-input'), show('tuser-wrapper')">
                                         <div class="info">
                                             <div class="1"></div>
                                             <div class="text">Transmitiendo</div>
                                         </div>
                                     </div>
 
-                                    <div class="option" id="a-listening" onclick="select('activity-selector', 'a-listening'), enable('activity-input')">
+                                    <div class="option" id="a-listening" onclick="select('activity-selector', 'a-listening'), enable('activity-input'), hide('tuser-wrapper')">
                                         <div class="info">
                                             <div class="2"></div>
                                             <div class="text">Escuchando</div>
                                         </div>
                                     </div>
 
-                                    <div class="option" id="a-watching" onclick="select('activity-selector', 'a-watching'), enable('activity-input')">
+                                    <div class="option" id="a-watching" onclick="select('activity-selector', 'a-watching'), enable('activity-input'), hide('tuser-wrapper')">
                                         <div class="info">
                                             <div class="3"></div>
                                             <div class="text">Viendo</div>
                                         </div>
                                     </div>
 
-                                    <div class="option" id="a-competing" onclick="select('activity-selector', 'a-competing'), enable('activity-input')">
+                                    <div class="option" id="a-competing" onclick="select('activity-selector', 'a-competing'), enable('activity-input'), hide('tuser-wrapper')">
                                         <div class="info">
                                             <div class="5"></div>
                                             <div class="text">Compitiendo</div>
@@ -273,17 +271,23 @@
 
                 <div class="edition-bottom">
                     <div class="warn-wrapper">
-                        <!-- <div class="forms"> -->
-                            <div class="botname-edition-wrapper">
-                                <input type="text" name="bot-name" id="botname-input" placeholder="Nombre" maxlength="32" onclick="resetSubmit('name-error')">
-                            </div>
-                        <!-- <div class="twitch-user-wrapper">    
-                                <input type="text" name="twitch-user" id="twitch-user-input" placeholder="Usuario de Twitch" onclick="resetSubmit('name-error')">
-                            </div>
-                        </div> -->
+                        <div class="botname-edition-wrapper">
+                            <input type="text" name="bot-name" id="botname-input" placeholder="Nombre" maxlength="32" onclick="resetSubmit('name-error')">
+                        </div>
 
                         <div class="error-message" id="name-error">
                             Error
+                        </div>
+                    </div>
+
+                    <div class="warn-wrapper">
+                        <div class="tuser-wrapper hiden">
+                            <input type="text" name="twitch-user" id="tuser-input" placeholder="Usuario de Twitch" onclick="resetSubmit('tuser-error')">
+                            <div class="null" id="default-user"></div>
+                        </div>
+
+                        <div class="error-message" id="tuser-error">
+                            Este campo es obligatorio.
                         </div>
                     </div>
     

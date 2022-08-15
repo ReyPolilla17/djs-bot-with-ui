@@ -9,9 +9,6 @@ let client;
         Cambiar el favicon
         Sección donde se vean los servidores
         Sección donde se vean los errores
-        Hacer más facil de entender el como subir imagenes en el area de edición
-        agregar un area que pida un usuario de twitch en caso de elegir transmitiendo
-        codificar todo lo de transmitiendo (falta agregarle sección en el area de edición y todo lo que eso conlleva)
         reescribir html, css y scripts que hagan que se vean los elementos para no usar scripts diferentes para todo
 */
 
@@ -34,9 +31,7 @@ function consultConfig() {
     let config = fs.readFileSync(`./config.json`);
     config = JSON.parse(config);
 
-    const { token } = config;
-
-    return token;
+    return config;
 }
 
 function createWindow() {
@@ -49,7 +44,7 @@ function createWindow() {
         }
     });
 
-    wind.removeMenu();
+    // wind.removeMenu();
     wind.loadFile('index.html');
 
     return wind;
@@ -58,7 +53,10 @@ function createWindow() {
 app.disableHardwareAcceleration();
 app.whenReady().then(() => {
     let wind = createWindow();
-    let token = consultConfig();
+    const config = consultConfig();
+
+    let { token, presence } = config;
+    const { user } = presence;
 
     app.on('activate', () => {
         // checar en una VM o algo el como se ejecuta esto, no tengo idea de que pasaría...
@@ -67,8 +65,12 @@ app.whenReady().then(() => {
         }
     });
 
-    ipcMain.on('clientStartup', (name, disc, avatar, status, activity, type) => {
-        wind.webContents.send('clientStartup', name, disc, avatar, status, activity, type);
+    ipcMain.on('clientStartup', (name, disc, avatar, status, activity, type, usr) => {
+        if(usr) {
+            wind.webContents.send('clientStartup', name, disc, avatar, status, activity, type, usr);
+        } else {
+            wind.webContents.send('clientStartup', name, disc, avatar, status, activity, type, user);
+        }
     });
 
     ipcMain.on('cooldownAvatar', () => {
@@ -132,7 +134,7 @@ app.whenReady().then(() => {
             console.log(err);
             wind.webContents.send('errLogin', error, id);
 
-            if(Rtoken !== null) {
+            if(Rtoken) {
                 client.login(Rtoken).catch(err => {
                     console.log(err);
                 });
@@ -177,5 +179,8 @@ app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit();
     }
-    client.destroy();
+
+    try {
+        client.destroy();
+    } catch(e) {}
 });

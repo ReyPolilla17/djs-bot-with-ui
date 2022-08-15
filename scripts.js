@@ -32,9 +32,17 @@ function select(menuId, optionId) {
     document.querySelector(`#activity-error`).style.visibility = 'hidden';
 }
 
-function hideShow (hide, show) {
+function hideShow(hide, show) {
     document.querySelector(`.${hide}`).classList.add('hiden');
     document.querySelector(`.${show}`).classList.remove('hiden');
+}
+
+function show(id) {
+    document.querySelector(`.${id}`).classList.remove('hiden');
+}
+
+function hide(id) {
+    document.querySelector(`.${id}`).classList.add('hiden');
 }
 
 function transferBot() {
@@ -48,6 +56,7 @@ function transferBot() {
     document.querySelector('#botname-input').value = '';
     document.querySelector('#activity-input').value = aName === '' ? '': aName;
     document.querySelector('#avatar-input').value = '';
+    document.querySelector('#default-user').className === 'null' ? document.querySelector('#tuser-input').value = '' : document.querySelector('#tuser-input').value = document.querySelector('#default-user').className;
 
     document.querySelector('#avatar-error').style.visibility = 'hidden';
     document.querySelector('#activity-error').style.visibility = 'hidden';
@@ -72,22 +81,28 @@ function transferBot() {
     switch(type) {
         case ('Jugando a'):
             document.querySelector(`#activity-selector`).firstElementChild.innerHTML = document.querySelector(`#a-playing`).firstElementChild.innerHTML;
+            hide('tuser-wrapper')
             break;
         case ('Transmitiendo'):
             document.querySelector(`#activity-selector`).firstElementChild.innerHTML = document.querySelector(`#a-streaming`).firstElementChild.innerHTML;
+            show('tuser-wrapper')
             break;
         case ('Escuchando'):
             document.querySelector(`#activity-selector`).firstElementChild.innerHTML = document.querySelector(`#a-listening`).firstElementChild.innerHTML;
+            hide('tuser-wrapper')
             break;
         case ('Viendo'):
             document.querySelector(`#activity-selector`).firstElementChild.innerHTML = document.querySelector(`#a-watching`).firstElementChild.innerHTML;
+            hide('tuser-wrapper')
             break;
         case ('Compitiendo en'):
             document.querySelector(`#activity-selector`).firstElementChild.innerHTML = document.querySelector(`#a-competing`).firstElementChild.innerHTML;
+            hide('tuser-wrapper')
             break;
         default:
             document.querySelector(`#activity-selector`).firstElementChild.innerHTML = document.querySelector(`#a-none`).firstElementChild.innerHTML;
             document.querySelector('#activity-input').disabled = true;
+            hide('tuser-wrapper')
             break;
     }
 }
@@ -135,9 +150,11 @@ function editBot() {
     const newActivityName = document.querySelector('#activity-input').value === '' ? null : document.querySelector('#activity-input').value;
     const newActivity = parseInt(document.querySelector('#activity-selector').firstElementChild.firstElementChild.className);
     
-    let newUser = null; // document.querySelector('#twitchuser-input').value === '' ? null : document.querySelector('#twitchuser-input').value;
+    let newUser = document.querySelector('#tuser-input').value === '' ? null : document.querySelector('#tuser-input').value;
     let newName = document.querySelector('#botname-input').value === '' ? null : document.querySelector('#botname-input').value;
     let newStatus = parseInt(document.querySelector('#status-selector').firstElementChild.firstElementChild.className);
+
+    const defUsr = document.querySelector('.tuser-wrapper').children[1].className === 'null' ? null : document.querySelector('.tuser-wrapper').children[1].className;
 
     document.querySelector('#confirm-edit').disabled = true;
     
@@ -162,10 +179,14 @@ function editBot() {
         err ++;
     }
 
-    // if(newActivity !== 6 && newActivityName && !newUser) {
-    //     document.querySelector('#rwitchuser-error').style.visibility = 'visible';
-    //     err ++;
-    // }
+    if(newActivity === 1 && !newUser && !defUsr) {
+        document.querySelector('#tuser-error').style.visibility = 'visible';
+        err ++;
+    }
+
+    if(newUser) {
+        document.querySelector('#default-user').className = `${newUser}`;
+    }
 
     switch(newStatus) {
         case 1:
@@ -210,7 +231,12 @@ function enable(id) {
 }
 
 async function openPath() {
-    renderer.send('openFile');
+    const url = document.getElementById('avatar-input').value === '' ? null : document.getElementById('avatar-input').value;
+    if(!url) {
+        renderer.send('openFile');
+    } else {
+        enterLink('avatar-input');
+    }
 }
 
 // document.getElementsByClassName('...')[...].style.display = '...';

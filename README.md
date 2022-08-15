@@ -21,7 +21,7 @@ To start the app just double click [start.bat](./start.bat) or in the console ru
 
 ### Known issues:
 - **When I run the app the bot starts, but the app freezes**
-> Sometimes the first time you open the app it cant get the preload.js file so it wont do anything.
+> Sometimes the first time you open the app it can't get the preload.js file so it wont do anything.
 
 >Just close and open again the app!
 
@@ -31,7 +31,7 @@ To start the app just double click [start.bat](./start.bat) or in the console ru
 >That is causing the error but you can easily change the value of the option user in the field presence in config.json to your twitch channel and restart the app to change it in discord (I'll fix that later).
 
 ### Looking good, what now?
-By the moment I havent added a lot of features, so here is the list (I may be updating this while I add or want the features so feel free to make any sugestion).
+By the moment I haven't added some features but I'm working on them, here is the list (I may be updating this while I add or want more features so feel free to make any sugestion).
 - **Error section:**
 > A section where the bot's errors are displayed.
 

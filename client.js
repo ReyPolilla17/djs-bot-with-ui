@@ -48,7 +48,8 @@ module.exports = {
                     client.user.avatarURL(),
                     client.user.presence.status, 
                     client.presence.activities[0].name,
-                    client.presence.activities[0].type
+                    client.presence.activities[0].type,
+                    config.presence.user
                 );
             } else {
                 ipcMain.emit('clientStartup', 
@@ -57,7 +58,8 @@ module.exports = {
                     client.user.avatarURL(), 
                     client.user.presence.status, 
                     null,
-                    null
+                    null,
+                    config.presence.user
                 );
             }
         });
@@ -114,7 +116,8 @@ module.exports = {
                     usrAvtr,
                     client.user.presence.status, 
                     client.presence.activities[0].name,
-                    client.presence.activities[0].type
+                    client.presence.activities[0].type,
+                    user
                 );
             } else {
                 ipcMain.emit('clientStartup', 
@@ -123,7 +126,8 @@ module.exports = {
                     usrAvtr,
                     client.user.presence.status, 
                     null,
-                    null
+                    null,
+                    user
                 );
             }
     
