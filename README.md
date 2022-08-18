@@ -5,7 +5,7 @@ This app will give your discord bot a UI so you can update it without having to 
 ### Before starting
 
 - This is a **Node.js Application** so you need to have [Node.js](https://nodejs.org/es/) installed (I'm currently using Node.js v18.6.0).
-- The libaries I'm using for this project are [Discord.js](https://discord.js.org/#/) and [Electron.js](https://www.electronjs.org/).
+- The libaries I'm using for this project are [Discord.js](https://discord.js.org/#/) (14.0.3) and [Electron.js](https://www.electronjs.org/) (20.0.3).
 - I know that the methods I use may be a bit strange, that's mainly because I learned coding by myself, sorry about that.
 - The whole project is in spanish because I made it for myself, but If you want it in another language, feel free to change it.
 - This is my first GitHub submission so if I missed something please let me know.
