@@ -7,8 +7,8 @@ body {
 }
 
 .token-wrapper {
-    padding-top: 20px;
     display: flex;
+    padding-top: 20px;
     flex-direction: column;
     justify-content: left;
 }
@@ -77,13 +77,9 @@ input:disabled {
     position: absolute;
 }
 
-.token-wrapper > .error-message {
-    position: relative;
-}
-
 .bot-wrapper {
+    display: none;
     padding: 20px 0px;
-    display: flex;
     justify-content: space-between;
 }
 
@@ -102,8 +98,8 @@ input:disabled {
 }
 
 .bot-wrapper > .bot-stats-wrapper > .bot-login {
-    display: flex;
-    align-items: center;   
+    display: none;
+    align-items: center;
 }
 
 .bot-wrapper > .bot-stats-wrapper > .bot-login > .bot-icon {
@@ -166,6 +162,10 @@ input:disabled {
 
 .bot-wrapper > .bot-extras-wrapper > .extras-options > .reset-button {
     padding-left: 20px;
+}
+
+.edition-wrapper {
+    display: none;
 }
 
 .edition-wrapper > .edition-header {
@@ -256,6 +256,10 @@ input:disabled {
     justify-content: space-between;
 }
 
+.tuser-wrapper {
+    display: none;
+}
+
 .edition-bottom input {
     background-color: #202225;
     width: 75%;
@@ -277,8 +281,4 @@ input:disabled {
 
 .selects-wrapper > .status-menu {
     margin-right: 10px;
-}
-
-.hiden {
-    display: none;
 }

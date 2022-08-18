@@ -12,16 +12,16 @@ ipcRenderer.on('errLogin', (event, err, id) => {
 });
 
 ipcRenderer.on('succesLogin', (event, id) => {
-    document.querySelector('.token-wrapper').classList.add('hiden');
-    document.querySelector('.edition-wrapper').classList.add('hiden');
-    document.querySelector('.bot-wrapper').classList.remove('hiden');
+    document.querySelector('.token-wrapper').style.display = 'none';
+    document.querySelector('.edition-wrapper').style.display = 'none';
+    document.querySelector('.bot-wrapper').style.display = 'flex';
 
     document.querySelector(`#${id}`).value = '';
 });
 
 ipcRenderer.on('clientStartup', (event, name, disc, avatar, status, activity, type, user) => {
-    document.querySelector('.bot-starting').classList.add('hiden');
-    document.querySelector('#login').classList.add('bot-login');
+    document.querySelector('.bot-starting').style.display = 'none';
+    document.querySelector('.bot-login').style.display = 'flex';
     document.querySelector('.bot-name').innerText = name;
     document.querySelector('.bot-disc').innerText = `#${disc}`;
     document.getElementsByClassName('avatar')[0].src = avatar;
@@ -112,8 +112,8 @@ ipcRenderer.on('usedName', () => {
 });
 
 ipcRenderer.on('successEdition', () => {
-    document.querySelector('.edition-wrapper').classList.add('hiden');
-    document.querySelector('.bot-wrapper').classList.remove('hiden');
+    document.querySelector('.edition-wrapper').style.display = 'none';
+    document.querySelector('.bot-wrapper').style.display = 'flex';
 });
 
 ipcRenderer.on('activateEdit', () => {

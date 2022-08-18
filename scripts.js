@@ -12,10 +12,9 @@ const dir = fs.readFileSync('./config.json');
 const info = new TextDecoder("utf-8").decode(dir);
 const data = JSON.parse(info);
 
-if(!data.token) {
-    document.querySelector('.bot-wrapper').classList.add('hiden');
-} else {
-    document.querySelector('.token-wrapper').classList.add('hiden');
+if(data.token) {
+    document.querySelector('.token-wrapper').style.display = 'none';
+    document.querySelector('.bot-wrapper').style.display = 'flex';
 }
 
 function submitToken(id, err) {
@@ -23,26 +22,23 @@ function submitToken(id, err) {
     renderer.send('submitToken', token, err, id);
 }
 
-function resetSubmit(id) {
-    document.querySelector(`#${id}`).style.visibility = 'hidden';
-}
-
 function select(menuId, optionId) {
     document.querySelector(`#${menuId}`).firstElementChild.innerHTML = document.querySelector(`#${optionId}`).firstElementChild.innerHTML;
     document.querySelector(`#activity-error`).style.visibility = 'hidden';
+    document.querySelector(`#tuser-error`).style.visibility = 'hidden';
 }
 
-function hideShow(hide, show) {
-    document.querySelector(`.${hide}`).classList.add('hiden');
-    document.querySelector(`.${show}`).classList.remove('hiden');
+function hideShow(hide, show, disp) {
+    document.querySelector(`.${hide}`).style.display = 'none';
+    document.querySelector(`.${show}`).style.display = disp;
 }
 
-function show(id) {
-    document.querySelector(`.${id}`).classList.remove('hiden');
+function show(id, disp) {
+    document.querySelector(`.${id}`).style.display = disp;
 }
 
 function hide(id) {
-    document.querySelector(`.${id}`).classList.add('hiden');
+    document.querySelector(`.${id}`).style.display = 'none';
 }
 
 function transferBot() {
@@ -61,6 +57,7 @@ function transferBot() {
     document.querySelector('#avatar-error').style.visibility = 'hidden';
     document.querySelector('#activity-error').style.visibility = 'hidden';
     document.querySelector('#name-error').style.visibility = 'hidden';
+    document.querySelector('#tuser-error').style.visibility = 'hidden';
     document.querySelector('#change-error').style.visibility = 'hidden';
 
     switch(status) {
@@ -215,10 +212,10 @@ function resetClient() {
     document.querySelector('#reset-btn').disabled = true;
     document.querySelector('#edit-btn').disabled = true;
 
-    document.querySelector('.bot-starting').classList.remove('hiden');
+    document.querySelector('.bot-starting').style.display = 'block';
     document.querySelector('.bot-starting').innerText = 'Tu bot está reiniciando...'
-
-    document.querySelector('#login').classList.remove('bot-login');
+    
+    document.querySelector('.bot-login').style.display = 'none';
 }
 
 function disable(id) {
@@ -241,6 +238,6 @@ async function openPath() {
 
 // document.getElementsByClassName('...')[...].style.display = '...';
 // const item = document.querySelector('.');
-// item.classList.add('hiden')
-// item.classList.remove('hiden')
+// item.style.display = 'none';
+// item.style.display = 'block';
 // item.innertext = var
