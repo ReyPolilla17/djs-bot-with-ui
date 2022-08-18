@@ -6,10 +6,10 @@ let client;
 
 /*
     Pendientes:
+        Checar lo del modo oscuro
         Cambiar el favicon
         Sección donde se vean los servidores
         Sección donde se vean los errores
-        reescribir html, css y scripts que hagan que se vean los elementos para no usar scripts diferentes para todo
 */
 
 function consultConfig() {
