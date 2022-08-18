@@ -44,7 +44,7 @@ function createWindow() {
         }
     });
 
-    // wind.removeMenu();
+    wind.removeMenu();
     wind.loadFile('index.html');
 
     return wind;
@@ -178,9 +178,9 @@ app.whenReady().then(() => {
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit();
-    }
 
-    try {
-        client.destroy();
-    } catch(e) {}
+        try {
+            client.destroy();
+        } catch(e) {}
+    }
 });
