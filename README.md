@@ -1,4 +1,4 @@
-# Discord-bot-with-user-interphase
+# Discord.JS bot with User Interphase
 
 This app will give your discord bot a UI so you can update it without having to stop it and start it every time, right now you can change the bot's status, presence, name and avatar, but I'm working in more stuff for this app.
 
