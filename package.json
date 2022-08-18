@@ -1,15 +1,32 @@
 {
   "name": "bot-con-interfaz",
-  "version": "1.0.0",
-  "description": "A discord bot that uses a UI instead of the boring console.",
+  "version": "1.7.2",
+  "description": "A discord bot with a UI to make it more easy to handle.",
   "main": "index.js",
   "scripts": {
     "start": "electron index.js"
   },
   "author": "ReyPolilla17",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ReyPolilla17/djs-bot-with-ui.git"
+  },
+  "keywords": [
+    "discord.js",
+    "electron",
+    "UI",
+    "discord",
+    "bot"
+  ],
+  "bugs": {
+    "url": "https://github.com/ReyPolilla17/djs-bot-with-ui/issues"
+  },
+  "homepage": "https://github.com/ReyPolilla17/djs-bot-with-ui#readme",
   "dependencies": {
-    "discord.js": "^14.0.3",
+    "discord.js": "^14.0.3"
+  },
+  "devDependencies": {
     "electron": "^20.0.3"
   }
 }
