@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const createClient = require('./client');
 const path = require('path');
 const fs = require('fs');
+const { sandboxed } = require('process');
 let client;
 
 /*
@@ -40,11 +41,12 @@ function createWindow() {
         height: 600,
         icon: './favicon.png',
         webPreferences: {
+            sandbox: false,
             preload: path.join(__dirname, 'preload.js')
         }
     });
 
-    wind.removeMenu();
+    // wind.removeMenu();
     wind.loadFile('index.html');
 
     return wind;
