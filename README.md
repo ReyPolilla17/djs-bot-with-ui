@@ -12,7 +12,7 @@ This app will give your discord bot a UI so you can update it without having to 
 
 > _Remember to run npm install after downloading the app to install all the libraries._
 
-To start the app just double click [start.bat](./start.bat) or in the console run npm run start.
+To start the app just double click [start.bat](./start.bat) or in the console run ``npm run start``.
 
 ### How does this work?
 - **Startup:**
