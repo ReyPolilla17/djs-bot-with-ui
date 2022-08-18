@@ -10,7 +10,7 @@ This app will give your discord bot a UI so you can update it without having to 
 - The whole project is in spanish because I made it for myself, but If you want it in another language, feel free to change it.
 - This is my first GitHub submission so if I missed something please let me know.
 
-> _Remember to run npm install after downloading the app to install all the libraries._
+> _Remember to run_ ``npm install`` _after downloading the app to install all the libraries._
 
 To start the app just double click [start.bat](./start.bat) or in the console run ``npm run start``.
 
