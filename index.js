@@ -9,6 +9,9 @@ let client;
     Pendientes:
         Cambiar el favicon
         Sección donde se vean los servidores
+            - pequeña area para enviar un mensaje o embed a un canal
+            - opción de unirse al servidor
+            - opción de abandonar servidor (el bot)
         Sección donde se vean los errores
 */
 
@@ -19,7 +22,7 @@ function consultConfig() {
         const base = {
             presence: {
                 status: "online",
-                activity: 0,
+                activity: 6,
                 user: null,
                 name: null
             }
@@ -45,7 +48,7 @@ function createWindow() {
         }
     });
 
-    // wind.removeMenu();
+    wind.removeMenu();
     wind.loadFile('index.html');
 
     return wind;
