@@ -72,8 +72,8 @@ input:disabled {
 }
 
 .error-message {
+    display: none;
     color: #F14346;
-    visibility: hidden;
     position: absolute;
 }
 

@@ -27,7 +27,7 @@
 
         <div class="form-wrapper">
             <div class="input-wrapper">
-                <input id="input-token" type="password" onclick="hide('submit-error')" onkeypress="if(event.key === 'Enter') submitToken('input-token', 'submit-error')" placeholder="Introduce el token de tu bot.">
+                <input id="input-token" type="password" onclick="hide('#submit-error')" onkeypress="if(event.key === 'Enter') submitToken('input-token', 'submit-error')" placeholder="Introduce el token de tu bot.">
             </div>
     
             <div class="button-wrapper">
@@ -85,7 +85,7 @@
 
             <div class="extras-options">
                 <div class="submit-button">
-                    <button type="submit" disabled class="blue-btn" id="edit-btn" onclick="hideShow('bot-wrapper', 'edition-wrapper', 'block'), transferBot()">Editar</button>
+                    <button type="submit" disabled class="blue-btn" id="edit-btn" onclick="hideShow('.bot-wrapper', '.edition-wrapper', 'block'), transferBot()">Editar</button>
                 </div>
     
                 <div class="reset-button">
@@ -102,7 +102,7 @@
             </div>
             
             <div class="cancel-button-wrapper">
-                <button type="submit" class="red-btn" onclick="hideShow('edition-wrapper', 'bot-wrapper', 'flex')">Cancelar</button>
+                <button type="submit" class="red-btn" onclick="hideShow('.edition-wrapper', '.bot-wrapper', 'flex')">Cancelar</button>
             </div>
         </div>
         
@@ -122,7 +122,7 @@
                         <div class="warn-wrapper">
                             <div class="upload-avatar-wrapper">
                                 <div class="input-wrapper">
-                                    <input type="text" name="avatar-url" id="avatar-input" placeholder="URL del avatar" onclick="hide('avatar-error')" onkeypress="if(event.key === 'Enter')openPath()">
+                                    <input type="text" name="avatar-url" id="avatar-input" placeholder="URL del avatar" onclick="hide('#avatar-error')" onkeypress="if(event.key === 'Enter')openPath()">
                                 </div>
     
                                 <div class="button-wrapper">
@@ -214,42 +214,42 @@
                                 </div>
 
                                 <div class="options">
-                                    <div class="option" id="a-none" onclick="select('activity-selector', 'a-none'), disable('activity-input'), hide('tuser-wrapper')">
+                                    <div class="option" id="a-none" onclick="select('activity-selector', 'a-none'), disable('activity-input'), hide('.tuser-wrapper')">
                                         <div class="info">
                                             <div class="6"></div>
                                             <div class="text">Ninguna</div>
                                         </div>
                                     </div>
 
-                                    <div class="option" id="a-playing" onclick="select('activity-selector', 'a-playing'), enable('activity-input'), hide('tuser-wrapper')">
+                                    <div class="option" id="a-playing" onclick="select('activity-selector', 'a-playing'), enable('activity-input'), hide('.tuser-wrapper')">
                                         <div class="info">
                                             <div class="0"></div>
                                             <div class="text">Jugando</div>
                                         </div>
                                     </div>
 
-                                    <div class="option" id="a-streaming" onclick="select('activity-selector', 'a-streaming'), enable('activity-input'), show('tuser-wrapper', 'block')">
+                                    <div class="option" id="a-streaming" onclick="select('activity-selector', 'a-streaming'), enable('activity-input'), show('.tuser-wrapper', 'block')">
                                         <div class="info">
                                             <div class="1"></div>
                                             <div class="text">Transmitiendo</div>
                                         </div>
                                     </div>
 
-                                    <div class="option" id="a-listening" onclick="select('activity-selector', 'a-listening'), enable('activity-input'), hide('tuser-wrapper')">
+                                    <div class="option" id="a-listening" onclick="select('activity-selector', 'a-listening'), enable('activity-input'), hide('.tuser-wrapper')">
                                         <div class="info">
                                             <div class="2"></div>
                                             <div class="text">Escuchando</div>
                                         </div>
                                     </div>
 
-                                    <div class="option" id="a-watching" onclick="select('activity-selector', 'a-watching'), enable('activity-input'), hide('tuser-wrapper')">
+                                    <div class="option" id="a-watching" onclick="select('activity-selector', 'a-watching'), enable('activity-input'), hide('.tuser-wrapper')">
                                         <div class="info">
                                             <div class="3"></div>
                                             <div class="text">Viendo</div>
                                         </div>
                                     </div>
 
-                                    <div class="option" id="a-competing" onclick="select('activity-selector', 'a-competing'), enable('activity-input'), hide('tuser-wrapper')">
+                                    <div class="option" id="a-competing" onclick="select('activity-selector', 'a-competing'), enable('activity-input'), hide('.tuser-wrapper')">
                                         <div class="info">
                                             <div class="5"></div>
                                             <div class="text">Compitiendo</div>
@@ -261,7 +261,7 @@
 
                         <div class="warn-wrapper">
                             <div class="input-wrapper">
-                                <input type="text" name="avtivity" id="activity-input" placeholder="Actividad" onclick="hide('activity-error')">
+                                <input type="text" name="avtivity" id="activity-input" placeholder="Actividad" onclick="hide('#activity-error')">
                             </div>
 
                             <div class="error-message" id="activity-error">
@@ -274,7 +274,7 @@
                 <div class="edition-bottom">
                     <div class="warn-wrapper">
                         <div class="botname-edition-wrapper">
-                            <input type="text" name="bot-name" id="botname-input" placeholder="Nombre" maxlength="32" onclick="hide('name-error')">
+                            <input type="text" name="bot-name" id="botname-input" placeholder="Nombre" maxlength="32" onclick="hide('#name-error')">
                         </div>
 
                         <div class="error-message" id="name-error">
@@ -284,7 +284,7 @@
 
                     <div class="warn-wrapper">
                         <div class="tuser-wrapper">
-                            <input type="text" name="twitch-user" id="tuser-input" placeholder="Usuario de Twitch" onclick="hide('tuser-error')">
+                            <input type="text" name="twitch-user" id="tuser-input" placeholder="Usuario de Twitch" onclick="hide('#tuser-error')">
                             <div class="null" id="default-user"></div>
                         </div>
 
@@ -311,7 +311,7 @@
     
             <div class="form-wrapper">
                 <div class="input-wrapper">
-                    <input id="change-token" type="password" onclick="hide('change-error')" onkeypress="if(event.key === 'Enter') submitToken('change-token', 'change-error')" placeholder="Introduce el token del nuevo bot.">
+                    <input id="change-token" type="password" onclick="hide('#change-error')" onkeypress="if(event.key === 'Enter') submitToken('change-token', 'change-error')" placeholder="Introduce el token del nuevo bot.">
                 </div>
         
                 <div class="button-wrapper">

@@ -7,7 +7,7 @@ const functions = {
 }
 
 ipcRenderer.on('errLogin', (event, err, id) => {
-    document.querySelector(`#${err}`).style.visibility = 'visible';
+    document.querySelector(`#${err}`).style.display = 'block';
     document.querySelector(`#${id}`).value = '';
 });
 

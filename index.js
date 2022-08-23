@@ -7,7 +7,6 @@ let client;
 
 /*
     Pendientes:
-        Checar lo del modo oscuro
         Cambiar el favicon
         Sección donde se vean los servidores
         Sección donde se vean los errores
@@ -133,12 +132,12 @@ app.whenReady().then(() => {
             fs.writeFileSync(`./config.json`, JSON.stringify(config, null, 4));
             wind.webContents.send('succesLogin', id);
         }).catch(err => {
-            console.log(err);
+            console.error(err);
             wind.webContents.send('errLogin', error, id);
 
             if(Rtoken) {
                 client.login(Rtoken).catch(err => {
-                    console.log(err);
+                    console.error(err);
                 });
             }
         });
@@ -153,7 +152,7 @@ app.whenReady().then(() => {
 
         client = createClient.execute();
         client.login(token).catch(err => {
-            console.log(err);
+            console.error(err);
         });
     });
 

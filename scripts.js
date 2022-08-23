@@ -24,21 +24,32 @@ function submitToken(id, err) {
 
 function select(menuId, optionId) {
     document.querySelector(`#${menuId}`).firstElementChild.innerHTML = document.querySelector(`#${optionId}`).firstElementChild.innerHTML;
-    document.querySelector(`#activity-error`).style.visibility = 'hidden';
-    document.querySelector(`#tuser-error`).style.visibility = 'hidden';
+    document.querySelector(`#activity-error`).style.display = 'none';
+    document.querySelector(`#tuser-error`).style.display = 'none';
 }
 
+// al ejecutar la función en el html se debe determinar también si es una clase o una id
+
 function hideShow(hide, show, disp) {
-    document.querySelector(`.${hide}`).style.display = 'none';
-    document.querySelector(`.${show}`).style.display = disp;
+    document.querySelector(`${hide}`).style.display = 'none';
+    document.querySelector(`${show}`).style.display = disp;
 }
 
 function show(id, disp) {
-    document.querySelector(`.${id}`).style.display = disp;
+    document.querySelector(`${id}`).style.display = disp;
 }
 
 function hide(id) {
-    document.querySelector(`.${id}`).style.display = 'none';
+    document.querySelector(`${id}`).style.display = 'none';
+}
+
+function disable(id) {
+    document.querySelector(`#${id}`).disabled = true;
+    document.querySelector(`#${id}`).value = '';
+}
+
+function enable(id) {
+    document.querySelector(`#${id}`).disabled = false;
 }
 
 function transferBot() {
@@ -54,11 +65,11 @@ function transferBot() {
     document.querySelector('#avatar-input').value = '';
     document.querySelector('#default-user').className === 'null' ? document.querySelector('#tuser-input').value = '' : document.querySelector('#tuser-input').value = document.querySelector('#default-user').className;
 
-    document.querySelector('#avatar-error').style.visibility = 'hidden';
-    document.querySelector('#activity-error').style.visibility = 'hidden';
-    document.querySelector('#name-error').style.visibility = 'hidden';
-    document.querySelector('#tuser-error').style.visibility = 'hidden';
-    document.querySelector('#change-error').style.visibility = 'hidden';
+    document.querySelector('#avatar-error').style.display = 'none';
+    document.querySelector('#activity-error').style.display = 'none';
+    document.querySelector('#name-error').style.display = 'none';
+    document.querySelector('#tuser-error').style.display = 'none';
+    document.querySelector('#change-error').style.display = 'none';
 
     switch(status) {
         case ('status-online'):
@@ -78,28 +89,28 @@ function transferBot() {
     switch(type) {
         case ('Jugando a'):
             document.querySelector(`#activity-selector`).firstElementChild.innerHTML = document.querySelector(`#a-playing`).firstElementChild.innerHTML;
-            hide('tuser-wrapper')
+            hide('.tuser-wrapper')
             break;
         case ('Transmitiendo'):
             document.querySelector(`#activity-selector`).firstElementChild.innerHTML = document.querySelector(`#a-streaming`).firstElementChild.innerHTML;
-            show('tuser-wrapper')
+            show('.tuser-wrapper')
             break;
         case ('Escuchando'):
             document.querySelector(`#activity-selector`).firstElementChild.innerHTML = document.querySelector(`#a-listening`).firstElementChild.innerHTML;
-            hide('tuser-wrapper')
+            hide('.tuser-wrapper')
             break;
         case ('Viendo'):
             document.querySelector(`#activity-selector`).firstElementChild.innerHTML = document.querySelector(`#a-watching`).firstElementChild.innerHTML;
-            hide('tuser-wrapper')
+            hide('.tuser-wrapper')
             break;
         case ('Compitiendo en'):
             document.querySelector(`#activity-selector`).firstElementChild.innerHTML = document.querySelector(`#a-competing`).firstElementChild.innerHTML;
-            hide('tuser-wrapper')
+            hide('.tuser-wrapper')
             break;
         default:
             document.querySelector(`#activity-selector`).firstElementChild.innerHTML = document.querySelector(`#a-none`).firstElementChild.innerHTML;
             document.querySelector('#activity-input').disabled = true;
-            hide('tuser-wrapper')
+            hide('.tuser-wrapper')
             break;
     }
 }
@@ -131,7 +142,7 @@ function enterLink(source) {
             document.getElementsByClassName('avatar')[1].src = link;
         } else {
             document.querySelector('#avatar-error').innerText = 'No se encontró la imagen, intenta con otra...';
-            document.querySelector('#avatar-error').style.visibility = 'visible';
+            document.querySelector('#avatar-error').style.display = 'block';
         }
     });
 }
@@ -157,27 +168,34 @@ function editBot() {
     
     let err = 0;
 
-    if(newName !== null && newName.length < 2 || newName !== null && newName.length > 32) {
-        document.querySelector('#name-error').innerText = 'El nombre es muy corto o muy largo...';
-        document.querySelector('#name-error').style.visibility = 'visible';
+    if(newName !== null && newName.length < 2) {
+        document.querySelector('#name-error').innerText = 'El nombre es muy corto...';
+        document.querySelector('#name-error').style.display = 'block';
+        newName = null;
+        err ++;
+    }
+
+    if(newName !== null && newName.length > 32) {
+        document.querySelector('#name-error').innerText = 'El nombre es muy largo...';
+        document.querySelector('#name-error').style.display = 'block';
         newName = null;
         err ++;
     }
 
     if(newName !== null && newName.includes('#')) {
         document.querySelector('#name-error').innerText = 'El nombre no puede tener un #...';
-        document.querySelector('#name-error').style.visibility = 'visible';
+        document.querySelector('#name-error').style.display = 'block';
         newName = null;
         err ++;
     }
 
     if(newActivity !== 6 && !newActivityName) {
-        document.querySelector('#activity-error').style.visibility = 'visible';
+        document.querySelector('#activity-error').style.display = 'block';
         err ++;
     }
 
     if(newActivity === 1 && !newUser && !defUsr) {
-        document.querySelector('#tuser-error').style.visibility = 'visible';
+        document.querySelector('#tuser-error').style.display = 'block';
         err ++;
     }
 
@@ -216,15 +234,6 @@ function resetClient() {
     document.querySelector('.bot-starting').innerText = 'Tu bot está reiniciando...'
     
     document.querySelector('.bot-login').style.display = 'none';
-}
-
-function disable(id) {
-    document.querySelector(`#${id}`).disabled = true;
-    document.querySelector(`#${id}`).value = '';
-}
-
-function enable(id) {
-    document.querySelector(`#${id}`).disabled = false;
 }
 
 async function openPath() {
