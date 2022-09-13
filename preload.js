@@ -23,7 +23,6 @@ ipcRenderer.on('succesLogin', (event, id) => {
 ipcRenderer.on('clientStartup', (event, name, disc, avatar, status, activity, type, user) => {
     document.querySelector('.bot-starting').style.display = 'none';
     document.querySelector('.bot-login').style.display = 'flex';
-    document.querySelector('.console-wrapper').style.display = 'block';
     document.querySelector('.bot-name').innerText = name;
     document.querySelector('.bot-disc').innerText = `#${disc}`;
     document.getElementsByClassName('avatar')[0].src = avatar;
@@ -92,6 +91,10 @@ ipcRenderer.on('clientStartup', (event, name, disc, avatar, status, activity, ty
         document.querySelector('.activity-type').innerText = '';
         document.querySelector('.activity-name').innerText = '';
     }
+});
+
+ipcRenderer.on('consoleLog', (event, log) => {
+    document.querySelector('.client').innerHTML = `${document.querySelector('.client').innerHTML} ${log} <br>`;
 });
 
 ipcRenderer.on('imagePath', (event, path) => {

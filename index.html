@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./styles/buttons.css">
     <link rel="stylesheet" href="./styles/statuses.css">
     <link rel="stylesheet" href="./styles/selects.css">
+    <link rel="stylesheet" href="./styles/guild.css">
     
     <script defer src="./scripts.js"></script>
     <script src="https://kit.fontawesome.com/0f3793b933.js" crossorigin="anonymous"></script>
@@ -109,14 +110,14 @@
                     </div>
                     
                     <div class="options">
-                        <div class="option" id="c-console" onclick="select('extra-display', 'c-console')">
+                        <div class="option" id="c-console" onclick="select('extra-display', 'c-console'), hideShow('.guilds', '.client', 'block')">
                             <div class="info">
                                 <div class="0"></div>
                                 <div class="text">Consola</div>
                             </div>
                         </div>
 
-                        <div class="option" id="c-servers" onclick="select('extra-display', 'c-servers')">
+                        <div class="option" id="c-servers" onclick="select('extra-display', 'c-servers'), hideShow('.client', '.guilds', 'grid')">
                             <div class="info">
                                 <div class="1"></div>
                                 <div class="text">Servidores</div>
@@ -129,12 +130,33 @@
         
         <div class="console">
             <div class="content">
-                <div class="client">
-                    
-                </div>
+                <div class="client"></div>
 
                 <div class="guilds">
+                    <div class="guild-wrapper">
+                        <div class="guild">
+                            <div class="guild-image">
+                                <img src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Guild Icon" class="icon">
+                            </div>
+    
+                            <div class="guild-info">
+                                <div class="guild-name">
+                                    Guild Name
+                                </div>
+                    
+                                <div class="guild-members">
+                                    1234 Miembros
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="buttons-wrapper">
+                            <button type="submit" class="green-btn">Unirse</button>
+                            <button type="submit" class="red-btn">Abandonar</button>
+                            <button type="submit" class="blue-btn">Enviar</button>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -372,10 +394,5 @@
     
         </div>
     </div>
-      
-    <!--     
-        <button type="submit" disabled class="grey-btn">Ver Servidores <i class="fa-solid fa-arrow-up-right-from-square"></i></button> 
-        <button type="submit" disabled class="grey-btn">Ver Consola <i class="fa-solid fa-arrow-up-right-from-square"></i></button> 
-    -->
 </body>
 </html>

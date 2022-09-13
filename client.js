@@ -25,6 +25,7 @@ module.exports = {
         client.on('ready', () => {
             process.title = client.user.username;
             console.log(`Logged in as ${client.user.username}!`);
+            ipcMain.emit('consoleLog', `Logged in as ${client.user.username}!`);
     
             const configFiles = fs.readFileSync(`./config.json`);
             let config = JSON.parse(configFiles);

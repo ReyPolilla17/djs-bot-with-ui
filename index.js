@@ -2,7 +2,6 @@ const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const createClient = require('./client');
 const path = require('path');
 const fs = require('fs');
-const { sandboxed } = require('process');
 let client;
 
 /*
@@ -12,7 +11,6 @@ let client;
             - pequeña area para enviar un mensaje o embed a un canal
             - opción de unirse al servidor
             - opción de abandonar servidor (el bot)
-        Sección donde se vean los errores (falta hacer que todos los console.log o console.log envien un evento a la app para escribir cada log en el area correspondiente)
 */
 
 function consultConfig() {
@@ -48,7 +46,7 @@ function createWindow() {
         }
     });
 
-    wind.removeMenu();
+    // wind.removeMenu();
     wind.loadFile('index.html');
 
     return wind;
@@ -75,6 +73,10 @@ app.whenReady().then(() => {
         } else {
             wind.webContents.send('clientStartup', name, disc, avatar, status, activity, type, user);
         }
+    });
+
+    ipcMain.on('consoleLog', (log) => {
+        wind.webContents.send('consoleLog', log);
     });
 
     ipcMain.on('cooldownAvatar', () => {
@@ -136,11 +138,13 @@ app.whenReady().then(() => {
             wind.webContents.send('succesLogin', id);
         }).catch(err => {
             console.log(err);
+            wind.webContents.send('consoleLog', err);
             wind.webContents.send('errLogin', error, id);
 
             if(Rtoken) {
                 client.login(Rtoken).catch(err => {
                     console.log(err);
+                    wind.webContents.send('consoleLog', err);
                 });
             }
         });
@@ -156,6 +160,7 @@ app.whenReady().then(() => {
         client = createClient.execute();
         client.login(token).catch(err => {
             console.log(err);
+            wind.webContents.send('consoleLog', err);
         });
     });
 

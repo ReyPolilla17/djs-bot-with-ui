@@ -316,3 +316,10 @@ input:disabled {
 .console > .content::-webkit-scrollbar {
     width: 5px;
 }
+
+.guilds {
+    display: none;
+    gap: 20px;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+}
