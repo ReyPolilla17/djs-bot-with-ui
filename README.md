@@ -38,8 +38,8 @@ To start the app just double click [start.bat](./start.bat) or in the console ru
 
 ### Looking good, what now?
 By the moment I haven't added some features because I want to improve the code of the app, but I'm still working on them, here is the list (I may be updating this while I add or want more features so feel free to make any sugestion).
-- **Error section:**
-> A section where the bot's errors are displayed.
+- **Logs section:**
+> A section where the console.logs of the bot are displayed in the app.
 
 - **Guilds section:**
-> A section where you will be able to see the guilds your bot is in and have the option to join or make your bot leave it.
+> A section where you will be able to see the guilds your bot is in and have the option to join or make your bot leave it or even send a message or embed from the bot.
