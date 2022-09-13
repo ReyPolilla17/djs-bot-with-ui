@@ -7,10 +7,13 @@ let client;
 /*
     Pendientes:
         Cambiar el favicon
+        Hacer que si el nombre del bot o servidor es muy largo, este se muestre via scroll
         Sección donde se vean los servidores
             - pequeña area para enviar un mensaje o embed a un canal
             - opción de unirse al servidor
             - opción de abandonar servidor (el bot)
+    Bugs:
+        - Al editar un aspecto del bot, se dejan de ver los servidores
 */
 
 function consultConfig() {
@@ -67,30 +70,6 @@ app.whenReady().then(() => {
         }
     });
 
-    ipcMain.on('clientStartup', (name, disc, avatar, status, activity, type, usr) => {
-        if(usr) {
-            wind.webContents.send('clientStartup', name, disc, avatar, status, activity, type, usr);
-        } else {
-            wind.webContents.send('clientStartup', name, disc, avatar, status, activity, type, user);
-        }
-    });
-
-    ipcMain.on('consoleLog', (log) => {
-        wind.webContents.send('consoleLog', log);
-    });
-
-    ipcMain.on('cooldownAvatar', () => {
-        wind.webContents.send('cooldownAvatar');
-    });
-
-    ipcMain.on('cooldownName', () => {
-        wind.webContents.send('cooldownName');
-    });
-
-    ipcMain.on('usedName', () => {
-        wind.webContents.send('usedName');
-    });
-
     ipcMain.on('editBot', (event, avatar, status, activity, activityName, name, user) => {
         let usr = user;
 
@@ -111,14 +90,6 @@ app.whenReady().then(() => {
         client.emit('change', avatar, status, activity, activityName, name, usr);
     });
 
-    ipcMain.on('successEdition', () => {
-        wind.webContents.send('successEdition');
-    });
-
-    ipcMain.on('activateEdit', () => {
-        wind.webContents.send('activateEdit');
-    });
-
     ipcMain.on('submitToken', (event, token, error, id) => {
         let Rtoken = client ? client.token : null;
 
@@ -126,7 +97,7 @@ app.whenReady().then(() => {
             client.destroy();
         } catch(e) {}
 
-        client = createClient.execute();
+        client = createClient.execute(wind);
 
         client.login(token).then(() => {
             const configFiles = fs.readFileSync(`./config.json`);
@@ -157,7 +128,7 @@ app.whenReady().then(() => {
             client.destroy();
         } catch(e) {}
 
-        client = createClient.execute();
+        client = createClient.execute(wind);
         client.login(token).catch(err => {
             console.log(err);
             wind.webContents.send('consoleLog', err);
@@ -179,7 +150,7 @@ app.whenReady().then(() => {
     });
 
     if(token) {
-        client = createClient.execute();
+        client = createClient.execute(wind);
         client.login(token);
     }
 });

@@ -7,7 +7,7 @@ module.exports = {
         name: 'createClient',
     },
 
-    execute() {
+    execute(wind) {
         const client = new Client({
             intents: [
                 GatewayIntentBits.Guilds,
@@ -25,7 +25,7 @@ module.exports = {
         client.on('ready', () => {
             process.title = client.user.username;
             console.log(`Logged in as ${client.user.username}!`);
-            ipcMain.emit('consoleLog', `Logged in as ${client.user.username}!`);
+            wind.webContents.send('consoleLog', `Logged in as ${client.user.username}!`);
     
             const configFiles = fs.readFileSync(`./config.json`);
             let config = JSON.parse(configFiles);
@@ -43,7 +43,7 @@ module.exports = {
             }
     
             if(client.presence.activities[0]) {
-                ipcMain.emit('clientStartup', 
+                wind.webContents.send('clientStartup', 
                     client.user.username, 
                     client.user.discriminator, 
                     client.user.avatarURL(),
@@ -53,7 +53,7 @@ module.exports = {
                     config.presence.user
                 );
             } else {
-                ipcMain.emit('clientStartup', 
+                wind.webContents.send('clientStartup', 
                     client.user.username, 
                     client.user.discriminator, 
                     client.user.avatarURL(), 
@@ -63,6 +63,10 @@ module.exports = {
                     config.presence.user
                 );
             }
+
+            client.guilds.cache.forEach(guild => {
+                wind.webContents.send('guildList', guild.id, guild.name, guild.memberCount, guild.iconURL());
+            });
         });
     
         client.on('change', async (avatar, status, activity, activityName, name, user) => {
@@ -81,7 +85,7 @@ module.exports = {
                 .then(() => {
                     usrAvtr = avtr;
                 }).catch((err) => {
-                    ipcMain.emit('cooldownAvatar');
+                    wind.webContents.send('cooldownAvatar');
                     errCnt ++; 
                 });
             }
@@ -91,9 +95,9 @@ module.exports = {
                     usrName = name;
                 }).catch((err) => {
                     if(err.rawError.errors.username._errors[0].code === 'USERNAME_TOO_MANY_USERS') {
-                        ipcMain.emit('usedName');
+                        wind.webContents.send('usedName');
                     } else {
-                        ipcMain.emit('cooldownName');
+                        wind.webContents.send('cooldownName');
                     }
                     errCnt ++;
                 });
@@ -111,7 +115,7 @@ module.exports = {
             }
     
             if(client.presence.activities[0]) {
-                ipcMain.emit('clientStartup', 
+                wind.webContents.send('clientStartup', 
                     usrName, 
                     client.user.discriminator, 
                     usrAvtr,
@@ -121,7 +125,7 @@ module.exports = {
                     user
                 );
             } else {
-                ipcMain.emit('clientStartup', 
+                wind.webContents.send('clientStartup', 
                     usrName,
                     client.user.discriminator,
                     usrAvtr,
@@ -141,11 +145,11 @@ module.exports = {
     
             fs.writeFileSync(`./config.json`, JSON.stringify(config, null, 4));
     
-            ipcMain.emit('activateEdit');
+            wind.webContents.send('activateEdit');
     
             if(errCnt > 0) return;
     
-            ipcMain.emit('successEdition');
+            wind.webContents.send('successEdition');
         });
     
         return client;

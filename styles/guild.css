@@ -15,7 +15,21 @@
     height: 50px;
 }
 
+.guild > .guild-info > .guild-id {
+    display: none;
+}
+
 .guild > .guild-info > .guild-members {
     font-size: .7em;
     color: #686d73;
+}
+
+.guild-wrapper > .buttons-wrapper {
+    padding-top: 5px;
+}
+
+.guild-wrapper > .buttons-wrapper button {
+    padding: 5px;
+    min-width: 0px;
+    font-size: .9em;
 }
