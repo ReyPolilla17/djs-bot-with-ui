@@ -27,6 +27,6 @@
     "discord.js": "^14.0.3"
   },
   "devDependencies": {
-    "electron": "^20.0.3"
+    "electron": "^20.1.3"
   }
 }

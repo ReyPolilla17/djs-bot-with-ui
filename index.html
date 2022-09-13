@@ -85,7 +85,7 @@
 
             <div class="extras-options">
                 <div class="submit-button">
-                    <button type="submit" disabled class="blue-btn" id="edit-btn" onclick="hideShow('.bot-wrapper', '.edition-wrapper', 'block'), transferBot()">Editar</button>
+                    <button type="submit" disabled class="blue-btn" id="edit-btn" onclick="hideShow('.bot-wrapper', '.edition-wrapper', 'block'), hide('.console-wrapper'), transferBot()">Editar</button>
                 </div>
     
                 <div class="reset-button">
@@ -95,14 +95,59 @@
         </div>
     </div>
 
+    <div class="console-wrapper">
+        <div class="area-header">
+            <div class="selects-wrapper">
+                <div class="menu">
+                    <div class="placeholder" id="extra-display">
+                        <div class="info">
+                            <div class="0"></div>
+                            <div class="text">Consola</div>
+                        </div>
+                        
+                        <i class="fa-solid fa-angle-down"></i>
+                    </div>
+                    
+                    <div class="options">
+                        <div class="option" id="c-console" onclick="select('extra-display', 'c-console')">
+                            <div class="info">
+                                <div class="0"></div>
+                                <div class="text">Consola</div>
+                            </div>
+                        </div>
+
+                        <div class="option" id="c-servers" onclick="select('extra-display', 'c-servers')">
+                            <div class="info">
+                                <div class="1"></div>
+                                <div class="text">Servidores</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="console">
+            <div class="content">
+                <div class="client">
+                    
+                </div>
+
+                <div class="guilds">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="edition-wrapper">
-        <div class="edition-header">
+        <div class="area-header">
             <div class="site-title">
                 Editar bot
             </div>
             
             <div class="cancel-button-wrapper">
-                <button type="submit" class="red-btn" onclick="hideShow('.edition-wrapper', '.bot-wrapper', 'flex')">Cancelar</button>
+                <button type="submit" class="red-btn" onclick="hideShow('.edition-wrapper', '.bot-wrapper', 'flex'), show('.console-wrapper', 'block')">Cancelar</button>
             </div>
         </div>
         
@@ -327,10 +372,10 @@
     
         </div>
     </div>
-
-    <!-- 
+      
+    <!--     
         <button type="submit" disabled class="grey-btn">Ver Servidores <i class="fa-solid fa-arrow-up-right-from-square"></i></button> 
-        <button type="submit" disabled class="grey-btn">Ver Errores <i class="fa-solid fa-arrow-up-right-from-square"></i></button> 
+        <button type="submit" disabled class="grey-btn">Ver Consola <i class="fa-solid fa-arrow-up-right-from-square"></i></button> 
     -->
 </body>
 </html>

@@ -15,6 +15,7 @@ ipcRenderer.on('succesLogin', (event, id) => {
     document.querySelector('.token-wrapper').style.display = 'none';
     document.querySelector('.edition-wrapper').style.display = 'none';
     document.querySelector('.bot-wrapper').style.display = 'flex';
+    document.querySelector('.console-wrapper').style.display = 'block';
 
     document.querySelector(`#${id}`).value = '';
 });
@@ -22,6 +23,7 @@ ipcRenderer.on('succesLogin', (event, id) => {
 ipcRenderer.on('clientStartup', (event, name, disc, avatar, status, activity, type, user) => {
     document.querySelector('.bot-starting').style.display = 'none';
     document.querySelector('.bot-login').style.display = 'flex';
+    document.querySelector('.console-wrapper').style.display = 'block';
     document.querySelector('.bot-name').innerText = name;
     document.querySelector('.bot-disc').innerText = `#${disc}`;
     document.getElementsByClassName('avatar')[0].src = avatar;

@@ -6,6 +6,19 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+::-webkit-scrollbar {
+    width: 7px;
+}
+  
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #18191c;
+}
+
 .token-wrapper {
     display: flex;
     padding-top: 20px;
@@ -168,7 +181,7 @@ input:disabled {
     display: none;
 }
 
-.edition-wrapper > .edition-header {
+.area-header {
     display: flex;
     justify-content: space-between;
 }
@@ -275,10 +288,31 @@ input:disabled {
     display: flex;
 }
 
-.selects-wrapper > .menu {
+.form-wrapper > .selects-wrapper > .menu {
     margin-right: 20px;
 }
 
 .selects-wrapper > .status-menu {
     margin-right: 10px;
+}
+
+.console-wrapper {
+    display: none;
+    padding-bottom: 20px;
+}
+
+.console {
+    padding: 10px;
+    border-radius: 3px;
+    background-color: #202225;
+}
+
+.console > .content {
+    overflow-y: scroll;
+    padding: 0px 10px;
+    height: 280px;
+}
+
+.console > .content::-webkit-scrollbar {
+    width: 5px;
 }

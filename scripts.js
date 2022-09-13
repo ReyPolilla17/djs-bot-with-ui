@@ -14,6 +14,7 @@ const data = JSON.parse(info);
 
 if(data.token) {
     document.querySelector('.token-wrapper').style.display = 'none';
+    document.querySelector('.console-wrapper').style.display = 'block';
     document.querySelector('.bot-wrapper').style.display = 'flex';
 }
 

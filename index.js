@@ -12,7 +12,7 @@ let client;
             - pequeña area para enviar un mensaje o embed a un canal
             - opción de unirse al servidor
             - opción de abandonar servidor (el bot)
-        Sección donde se vean los errores
+        Sección donde se vean los errores (falta hacer que todos los console.log o console.log envien un evento a la app para escribir cada log en el area correspondiente)
 */
 
 function consultConfig() {
@@ -135,12 +135,12 @@ app.whenReady().then(() => {
             fs.writeFileSync(`./config.json`, JSON.stringify(config, null, 4));
             wind.webContents.send('succesLogin', id);
         }).catch(err => {
-            console.error(err);
+            console.log(err);
             wind.webContents.send('errLogin', error, id);
 
             if(Rtoken) {
                 client.login(Rtoken).catch(err => {
-                    console.error(err);
+                    console.log(err);
                 });
             }
         });
@@ -155,7 +155,7 @@ app.whenReady().then(() => {
 
         client = createClient.execute();
         client.login(token).catch(err => {
-            console.error(err);
+            console.log(err);
         });
     });
 
