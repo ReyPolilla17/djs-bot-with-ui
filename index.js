@@ -12,8 +12,6 @@ let client;
             - pequeña area para enviar un mensaje o embed a un canal
             - opción de unirse al servidor
             - opción de abandonar servidor (el bot)
-    Bugs:
-        - Al editar un aspecto del bot, se dejan de ver los servidores
 */
 
 function consultConfig() {
@@ -49,7 +47,7 @@ function createWindow() {
         }
     });
 
-    // wind.removeMenu();
+    wind.removeMenu();
     wind.loadFile('index.html');
 
     return wind;

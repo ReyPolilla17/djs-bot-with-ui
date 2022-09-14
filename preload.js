@@ -20,7 +20,7 @@ ipcRenderer.on('succesLogin', (event, id) => {
     document.querySelector(`#${id}`).value = '';
 });
 
-ipcRenderer.on('clientStartup', (event, name, disc, avatar, status, activity, type, user) => {
+ipcRenderer.on('clientStartup', (event, name, disc, avatar, status, activity, type, user, isNew) => {
     document.querySelector('.bot-starting').style.display = 'none';
     document.querySelector('.bot-login').style.display = 'flex';
     document.querySelector('.bot-name').innerText = name;
@@ -33,6 +33,10 @@ ipcRenderer.on('clientStartup', (event, name, disc, avatar, status, activity, ty
     document.querySelector('#reset-btn').innerText = 'Reiniciar';
     document.querySelector('.bot-starting').innerText = 'Tu bot está iniciando sesión...';
 
+    if(isNew === true) {
+        document.querySelector('.guilds').innerHTML = '';
+    }
+    
     document.title = name;
 
     if(user) {
@@ -91,8 +95,6 @@ ipcRenderer.on('clientStartup', (event, name, disc, avatar, status, activity, ty
         document.querySelector('.activity-type').innerText = '';
         document.querySelector('.activity-name').innerText = '';
     }
-
-    document.querySelector('.guilds').innerHTML = '';
 });
 
 ipcRenderer.on('guildList', (event, id, name, mCount, image) => {

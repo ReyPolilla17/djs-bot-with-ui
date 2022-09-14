@@ -50,7 +50,8 @@ module.exports = {
                     client.user.presence.status, 
                     client.presence.activities[0].name,
                     client.presence.activities[0].type,
-                    config.presence.user
+                    config.presence.user,
+                    true
                 );
             } else {
                 wind.webContents.send('clientStartup', 
@@ -60,7 +61,8 @@ module.exports = {
                     client.user.presence.status, 
                     null,
                     null,
-                    config.presence.user
+                    config.presence.user,
+                    true
                 );
             }
 
@@ -122,7 +124,8 @@ module.exports = {
                     client.user.presence.status, 
                     client.presence.activities[0].name,
                     client.presence.activities[0].type,
-                    user
+                    user,
+                    false
                 );
             } else {
                 wind.webContents.send('clientStartup', 
@@ -132,7 +135,8 @@ module.exports = {
                     client.user.presence.status, 
                     null,
                     null,
-                    user
+                    user,
+                    false
                 );
             }
     
