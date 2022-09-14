@@ -169,6 +169,12 @@ module.exports = {
     
             wind.webContents.send('successEdition');
         });
+
+        client.on('leaveGuild', guild => {
+            const gld = client.guilds.cache.get(guild);
+
+            gld.leave();
+        });
     
         return client;
     }

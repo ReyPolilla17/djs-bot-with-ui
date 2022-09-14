@@ -241,8 +241,34 @@ function join(guild) {
     console.log(guild);
 }
 
+function leaveRequest(guild) {
+    const specifiedElement = document.getElementById(`${guild}`).parentElement.parentElement;
+
+    specifiedElement.children[0].style.display = 'none';
+    specifiedElement.children[1].style.display = 'none';
+    specifiedElement.children[2].style.display = 'flex';
+    
+    document.addEventListener("click", function handler(event) {
+        const isClickInside = specifiedElement.contains(event.target);
+
+        if (!isClickInside) {
+            specifiedElement.children[0].style.display = 'flex';
+            specifiedElement.children[1].style.display = 'block';
+            specifiedElement.children[2].style.display = 'none';
+            
+            this.removeEventListener("click", handler);
+        }
+    });
+}
+
+function hideChildren(children) {
+    children.children[0].style.display = 'flex';
+    children.children[1].style.display = 'block';
+    children.children[2].style.display = 'none';
+}
+
 function leave(guild) {
-    console.log(guild);
+    renderer.send('leaveGuild', guild);
 }
 
 function send(guild) {

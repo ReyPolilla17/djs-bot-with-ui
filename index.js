@@ -133,6 +133,10 @@ app.whenReady().then(() => {
         });
     });
 
+    ipcMain.on('leaveGuild', (event, guild) => {
+        client.emit('leaveGuild', guild);
+    });
+
     ipcMain.on('openFile', async () => {
         const { canceled, filePaths } = await dialog.showOpenDialog({
             filters: [
