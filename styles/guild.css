@@ -15,10 +15,6 @@
     height: 50px;
 }
 
-.guild > .guild-info > .guild-id {
-    display: none;
-}
-
 .guild > .guild-info > .guild-members {
     font-size: .7em;
     color: #686d73;

@@ -237,6 +237,18 @@ function resetClient() {
     document.querySelector('.bot-login').style.display = 'none';
 }
 
+function join(guild) {
+    console.log(guild);
+}
+
+function leave(guild) {
+    console.log(guild);
+}
+
+function send(guild) {
+    console.log(guild);
+}
+
 async function openPath() {
     const url = document.getElementById('avatar-input').value === '' ? null : document.getElementById('avatar-input').value;
     if(!url) {

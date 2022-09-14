@@ -47,7 +47,7 @@ function createWindow() {
         }
     });
 
-    wind.removeMenu();
+    // wind.removeMenu();
     wind.loadFile('index.html');
 
     return wind;

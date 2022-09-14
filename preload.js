@@ -101,26 +101,31 @@ ipcRenderer.on('guildList', (event, id, name, mCount, image) => {
     const src = image ? image : 'https://cdn.discordapp.com/embed/avatars/0.png';
     const def = 
     `<div class="guild">
+        <div id="${id}"></div>
+
         <div class="guild-image">
             <img src="${src}" alt="Guild Icon" class="icon">
         </div>
 
         <div class="guild-info">
-            <div class="guild-id">${id}</div>
             <div class="guild-name">${name}</div>
             <div class="guild-members">${mCount} Miembros</div>
         </div>
     </div>
     
     <div class="buttons-wrapper">
-        <button type="submit" disabled class="green-btn">Unirse</button>
-        <button type="submit" disabled class="red-btn">Abandonar</button>
-        <button type="submit" disabled class="blue-btn">Enviar</button>
+        <button type="submit" class="green-btn" onclick="join(this.parentElement.parentElement.firstChild.firstElementChild.id)">Unirse</button>
+        <button type="submit" class="red-btn" onclick="join(this.parentElement.parentElement.firstChild.firstElementChild.id)">Abandonar</button>
+        <button type="submit" class="blue-btn" onclick="join(this.parentElement.parentElement.firstChild.firstElementChild.id)">Enviar</button>
     </div>`
     const guildCard = document.createElement("div");
     guildCard.classList.add('guild-wrapper')
     guildCard.innerHTML = def;
     document.querySelector('.guilds').appendChild(guildCard);
+});
+
+ipcRenderer.on('guildRemove', (event, id) => {
+    document.getElementById(id).parentElement.parentElement.remove();
 });
 
 ipcRenderer.on('consoleLog', (event, log) => {

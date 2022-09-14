@@ -70,7 +70,21 @@ module.exports = {
                 wind.webContents.send('guildList', guild.id, guild.name, guild.memberCount, guild.iconURL());
             });
         });
-    
+
+        client.on('guildCreate', guild => {
+            wind.webContents.send('guildList', guild.id, guild.name, guild.memberCount, guild.iconURL());
+
+            console.log(`Joined ${guild.name} (${guild.id})`);
+            wind.webContents.send('consoleLog', `Joined ${guild.name} (${guild.id})`);
+        });
+        
+        client.on('guildDelete', guild => {
+            wind.webContents.send('guildRemove', guild.id);
+
+            console.log(`No longer in ${guild.name} (${guild.id})`);
+            wind.webContents.send('consoleLog', `No longer in ${guild.name} (${guild.id})`);
+        });
+
         client.on('change', async (avatar, status, activity, activityName, name, user) => {
             let usrName = client.user.username;
             let usrAvtr = client.user.avatarURL();
