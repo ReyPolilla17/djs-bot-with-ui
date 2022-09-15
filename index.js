@@ -11,7 +11,6 @@ let client;
         Sección donde se vean los servidores
             - pequeña area para enviar un mensaje o embed a un canal
             - opción de unirse al servidor
-            - opción de abandonar servidor (el bot)
 */
 
 function consultConfig() {
@@ -47,7 +46,7 @@ function createWindow() {
         }
     });
 
-    // wind.removeMenu();
+    wind.removeMenu();
     wind.loadFile('index.html');
 
     return wind;
