@@ -1,6 +1,5 @@
 const { app, BrowserWindow, ipcMain, dialog } = require('electron');
-const createClient = require('./client');
-const path = require('path');
+const { createClient, createWindow, consultConfig, log } = require('./functions');
 const fs = require('fs');
 let client;
 
@@ -12,45 +11,6 @@ let client;
             - pequeña area para enviar un mensaje o embed a un canal
             - opción de unirse al servidor
 */
-
-function consultConfig() {
-    const confDir = fs.readdirSync('./').find(file => file === `config.json`);
-	
-    if(!confDir) {
-        const base = {
-            presence: {
-                status: "online",
-                activity: 6,
-                user: null,
-                name: null
-            }
-        };
-
-        fs.writeFileSync(`./config.json`, JSON.stringify(base, null, 4));
-    } 
-
-    let config = fs.readFileSync(`./config.json`);
-    config = JSON.parse(config);
-
-    return config;
-}
-
-function createWindow() {
-    const wind = new BrowserWindow({
-        width: 840,
-        height: 600,
-        icon: './favicon.png',
-        webPreferences: {
-            sandbox: false,
-            preload: path.join(__dirname, 'preload.js')
-        }
-    });
-
-    wind.removeMenu();
-    wind.loadFile('index.html');
-
-    return wind;
-}
 
 app.disableHardwareAcceleration();
 app.whenReady().then(() => {
@@ -94,7 +54,7 @@ app.whenReady().then(() => {
             client.destroy();
         } catch(e) {}
 
-        client = createClient.execute(wind);
+        client = createClient(wind);
 
         client.login(token).then(() => {
             const configFiles = fs.readFileSync(`./config.json`);
@@ -105,14 +65,13 @@ app.whenReady().then(() => {
             fs.writeFileSync(`./config.json`, JSON.stringify(config, null, 4));
             wind.webContents.send('succesLogin', id);
         }).catch(err => {
-            console.log(err);
-            wind.webContents.send('consoleLog', err);
+            log(wind, err);
+
             wind.webContents.send('errLogin', error, id);
 
             if(Rtoken) {
                 client.login(Rtoken).catch(err => {
-                    console.log(err);
-                    wind.webContents.send('consoleLog', err);
+                    log(wind, err);
                 });
             }
         });
@@ -125,10 +84,9 @@ app.whenReady().then(() => {
             client.destroy();
         } catch(e) {}
 
-        client = createClient.execute(wind);
+        client = createClient(wind);
         client.login(token).catch(err => {
-            console.log(err);
-            wind.webContents.send('consoleLog', err);
+            log(wind, err);
         });
     });
 
@@ -151,7 +109,7 @@ app.whenReady().then(() => {
     });
 
     if(token) {
-        client = createClient.execute(wind);
+        client = createClient(wind);
         client.login(token);
     }
 });
