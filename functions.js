@@ -3,6 +3,13 @@ const { BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const fs = require('fs');
 
+module.exports = {
+    createClient,
+    createWindow,
+    consultConfig,
+    log
+}
+
 function createClient(wind) {
     const client = new Client({
         intents: [
@@ -221,11 +228,4 @@ function createWindow() {
 function log(wind, log) {
     console.log(log)
     wind.webContents.send('consoleLog', log);
-}
-
-module.exports = {
-    createClient,
-    createWindow,
-    consultConfig,
-    log
 }
