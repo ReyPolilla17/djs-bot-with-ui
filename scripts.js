@@ -267,8 +267,18 @@ function hideChildren(children) {
     children.children[2].style.display = 'none';
 }
 
-function leave(guild) {
+function leave(guild, btns) {
     renderer.send('leaveGuild', guild);
+
+    const confirmBtns = btns.lastElementChild.lastElementChild.children;
+    const guildBtns = btns.children[1].children;
+
+    confirmBtns[0].disabled = true;
+    confirmBtns[1].disabled = true;
+
+    guildBtns[0].disabled = true;
+    guildBtns[1].disabled = true;
+    guildBtns[2].disabled = true;
 }
 
 function send(guild) {

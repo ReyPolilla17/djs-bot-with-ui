@@ -125,10 +125,11 @@ ipcRenderer.on('guildList', (event, id, name, mCount, image) => {
         </div>
 
         <div class="buttons-wrapper">
-            <button type="submit" class="green-btn" onclick="leave(this.parentElement.parentElement.parentElement.firstChild.firstElementChild.id)">Confirmar</button>
+            <button type="submit" class="green-btn" onclick="leave(this.parentElement.parentElement.parentElement.firstChild.firstElementChild.id, this.parentElement.parentElement.parentElement)">Confirmar</button>
             <button type="submit" class="red-btn" onclick="hideChildren(this.parentElement.parentElement.parentElement)">Cancelar</button>
         </div>
-    </div>`
+    </div>`;
+
     const guildCard = document.createElement("div");
     guildCard.classList.add('guild-wrapper')
     guildCard.innerHTML = def;
