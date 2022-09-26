@@ -1,16 +1,33 @@
+// definir que es fs y renderer (solamente para fines prácticos)
 const fs = window.fncs.fs;
 const renderer = window.fncs.renderer;
 
+// Revisar config.json en busca del token
+
 const confDir = fs.readdirSync('./').find(file => file === `config.json`);
+
+// si no existe el archivo, lo crea
 	
 if(!confDir) {
-    const base = {};
+    const base = {
+        presence: {
+            status: "online",
+            activity: 6,
+            user: null,
+            name: null
+        }
+    };
+
     fs.writeFileSync(`./config.json`, JSON.stringify(base, null, 4));
 }
+
+// definir el archivo, en que base se codifica el archivo y pasarlo a texto legible
 
 const dir = fs.readFileSync('./config.json');
 const info = new TextDecoder("utf-8").decode(dir);
 const data = JSON.parse(info);
+
+// si ya hay un token pasar al area del bot (el area donde se ve la info del bot)
 
 if(data.token) {
     document.querySelector('.token-wrapper').style.display = 'none';
@@ -18,10 +35,21 @@ if(data.token) {
     document.querySelector('.bot-wrapper').style.display = 'flex';
 }
 
+// decirle a index.js que se puede crear el bot
+
+renderer.send('Ready');
+
+// se ejecuta al enviar un token nuevo
+// id es el campo en el que se mando (inicio o edicion)
+// err es cual mensaje de error se mostratá en caso de error
+
 function submitToken(id, err) {
     const token = document.querySelector(`#${id}`).value;
     renderer.send('submitToken', token, err, id);
 }
+
+// se ejecuta al elegir en un menu
+// selecciona la opcion y oculta cualquier error relacionado
 
 function select(menuId, optionId) {
     document.querySelector(`#${menuId}`).firstElementChild.innerHTML = document.querySelector(`#${optionId}`).firstElementChild.innerHTML;
@@ -29,7 +57,8 @@ function select(menuId, optionId) {
     document.querySelector(`#tuser-error`).style.display = 'none';
 }
 
-// al ejecutar la función en el html se debe determinar también si es una clase o una id
+// funciones para mostrar y ocultar
+// usa la clase del objeto incluido el . o el # en caso de id y  como se debe mostrar
 
 function hideShow(hide, show, disp) {
     document.querySelector(`${hide}`).style.display = 'none';
@@ -44,6 +73,8 @@ function hide(id) {
     document.querySelector(`${id}`).style.display = 'none';
 }
 
+// desactivar, activar botones o campos (usa la ide del objeto)
+
 function disable(id) {
     document.querySelector(`#${id}`).disabled = true;
     document.querySelector(`#${id}`).value = '';
@@ -53,25 +84,30 @@ function enable(id) {
     document.querySelector(`#${id}`).disabled = false;
 }
 
+// pasa la info del bot al area de edición
+
 function transferBot() {
+    // como el estatus puede cambiar se toma el campo desde una id el resto de campos se toman en "bruto"
     const status = document.querySelector('#status').classList[0];
     const type = document.querySelector('.activity-type').innerText;
     const aName = document.querySelector('.activity-name').innerText;
     const avatar = document.getElementsByClassName('avatar')[0].src;
 
-    
+    // resetea los campos editables
     document.getElementsByClassName('avatar')[1].src = avatar;
     document.querySelector('#botname-input').value = '';
     document.querySelector('#activity-input').value = aName === '' ? '': aName;
     document.querySelector('#avatar-input').value = '';
     document.querySelector('#default-user').className === 'null' ? document.querySelector('#tuser-input').value = '' : document.querySelector('#tuser-input').value = document.querySelector('#default-user').className;
 
+    // oculta cualquier error
     document.querySelector('#avatar-error').style.display = 'none';
     document.querySelector('#activity-error').style.display = 'none';
     document.querySelector('#name-error').style.display = 'none';
     document.querySelector('#tuser-error').style.display = 'none';
     document.querySelector('#change-error').style.display = 'none';
 
+    // como mostrar cada estado
     switch(status) {
         case ('status-online'):
             document.querySelector(`#status-selector`).firstElementChild.innerHTML = document.querySelector(`#s-online`).firstElementChild.innerHTML;
@@ -87,6 +123,7 @@ function transferBot() {
             break;
     }
 
+    // como mostrar cada actividad
     switch(type) {
         case ('Jugando a'):
             document.querySelector(`#activity-selector`).firstElementChild.innerHTML = document.querySelector(`#a-playing`).firstElementChild.innerHTML;
@@ -116,6 +153,7 @@ function transferBot() {
     }
 }
 
+// revisar si existe la imagen dada por el usuario basado en si se puede crear una imagen o no con el link dado
 function checkIfImageExists(url, callback) {
     const img = new Image();
     img.src = url;
@@ -131,8 +169,9 @@ function checkIfImageExists(url, callback) {
             callback(false);
         };
     }
-  }
+}
 
+// al introducir el link para una imagen se realiza la confirmación para saber si se puede poner o no
 function enterLink(source) {
     const link = document.querySelector(`#${source}`).value;
 
@@ -148,35 +187,47 @@ function enterLink(source) {
     });
 }
 
+// vuelve al avatar inicial antes de la edición
 function resetAvatar() {
     document.querySelector(`#avatar-input`).value = '';
     document.getElementsByClassName('avatar')[1].src = document.getElementsByClassName('avatar')[0].src;
 
 }
 
+
+// manda la información a editar en el bot, si hay algun error no manda nada para no sobrecargar al bot de errores
 function editBot() {
+    // si hay avatar, actividad, o tipo de actividad nuevo los guarda
+    // (estos son confirmados antes por lo que no será necesario poder editarlos)
     const newAvatar = document.getElementsByClassName('avatar')[0].src === document.getElementsByClassName('avatar')[1].src ? null : document.getElementsByClassName('avatar')[1].src;
     const newActivityName = document.querySelector('#activity-input').value === '' ? null : document.querySelector('#activity-input').value;
     const newActivity = parseInt(document.querySelector('#activity-selector').firstElementChild.firstElementChild.className);
     
+    // si existe uno nuevo los guarda, pero se pueden editar ya que podrian estar mal
+    // el estatus lo identifica con numeros, por eso se usa el parseInt
     let newUser = document.querySelector('#tuser-input').value === '' ? null : document.querySelector('#tuser-input').value;
     let newName = document.querySelector('#botname-input').value === '' ? null : document.querySelector('#botname-input').value;
     let newStatus = parseInt(document.querySelector('#status-selector').firstElementChild.firstElementChild.className);
 
+    // se guarda el usuario por defecto de twitch en una clase vacia al iniciar
     const defUsr = document.querySelector('.tuser-wrapper').children[1].className === 'null' ? null : document.querySelector('.tuser-wrapper').children[1].className;
 
+    // bloquea el boton de editar para evitar sobrecargas
     document.querySelector('#confirm-edit').disabled = true;
     
+    // cuanta de errores, si al final resulta mayor a 0 no se envia la edición
     let err = 0;
 
-    if(newName !== null && newName.length < 2) {
+    // discord no acepta nombres menores a 2 ni mayores a 32 ni con el caracter #, esto sirve para validar si se cumple esta condición
+    // suma 1 a la cuenta de errores si la condicion no se cumple
+    if(newName && newName.length < 2) {
         document.querySelector('#name-error').innerText = 'El nombre es muy corto...';
         document.querySelector('#name-error').style.display = 'block';
         newName = null;
         err ++;
     }
 
-    if(newName !== null && newName.length > 32) {
+    if(newName && newName.length > 32) {
         document.querySelector('#name-error').innerText = 'El nombre es muy largo...';
         document.querySelector('#name-error').style.display = 'block';
         newName = null;
@@ -190,20 +241,24 @@ function editBot() {
         err ++;
     }
 
+    // si el nuevo tipo de actividad no es "ninguna" debe haber un nombre de actividad
     if(newActivity !== 6 && !newActivityName) {
         document.querySelector('#activity-error').style.display = 'block';
         err ++;
     }
 
+    // debe haber un usuario de twitch si se quiere poner la actividad "transmitiendo"
     if(newActivity === 1 && !newUser && !defUsr) {
         document.querySelector('#tuser-error').style.display = 'block';
         err ++;
     }
 
+    // si se pone un nuevo usuario, cambiar la clase donde se guarda
     if(newUser) {
         document.querySelector('#default-user').className = `${newUser}`;
     }
 
+    // el estatus se manda en texto en lugar de numero
     switch(newStatus) {
         case 1:
             newStatus = 'dnd';
@@ -219,17 +274,23 @@ function editBot() {
             break;
     }
 
+    // si hubo algun error no se manda la solicitud de editar
     if(err > 0) return document.querySelector('#confirm-edit').disabled = false;
     if(document.querySelector('#avatar-error').style.visibility === 'visible') return document.querySelector('#confirm-edit').disabled = false;
 
+    // enviar la solicitud de editar
     renderer.send('editBot', newAvatar, newStatus, newActivity, newActivityName, newName, newUser);
 }
 
+// reinicia el bot en caso de errores
 function resetClient() {
+    // solicitar reinicio
     renderer.send('resetClient');
-    
+
+    // desactiva cualquier actividad para evitar errores
     document.querySelector('#reset-btn').disabled = true;
     document.querySelector('#edit-btn').disabled = true;
+    document.querySelector('.guilds').innerHTML = ''
 
     document.querySelector('.bot-starting').style.display = 'block';
     document.querySelector('.bot-starting').innerText = 'Tu bot está reiniciando...'
@@ -237,17 +298,22 @@ function resetClient() {
     document.querySelector('.bot-login').style.display = 'none';
 }
 
+// dar invitación al servidor
 function join(guild) {
     console.log(guild);
 }
 
+// preguntar por confirmación de abandonar servidor
 function leaveRequest(guild) {
+    // obtener la tarjeta de servidor
     const specifiedElement = document.getElementById(`${guild}`).parentElement.parentElement;
 
+    // mostrar mensaje de confirmación
     specifiedElement.children[0].style.display = 'none';
     specifiedElement.children[1].style.display = 'none';
     specifiedElement.children[2].style.display = 'flex';
     
+    // si se hace click fuera del area de confirmacion lo cuenta como elegir "cancelar"
     document.addEventListener("click", function handler(event) {
         const isClickInside = specifiedElement.contains(event.target);
 
@@ -261,15 +327,19 @@ function leaveRequest(guild) {
     });
 }
 
+// oculta el area de confirmación
 function hideChildren(children) {
     children.children[0].style.display = 'flex';
     children.children[1].style.display = 'block';
     children.children[2].style.display = 'none';
 }
 
+// abandona el servidor
 function leave(guild, btns) {
+    // envia la solicitud al bot
     renderer.send('leaveGuild', guild);
 
+    // desactiva los botones del servidor para evitar errores
     const confirmBtns = btns.lastElementChild.lastElementChild.children;
     const guildBtns = btns.children[1].children;
 
@@ -281,12 +351,16 @@ function leave(guild, btns) {
     guildBtns[2].disabled = true;
 }
 
+// enviar un mensaje al servidor
 function send(guild) {
     console.log(guild);
 }
 
+//abrir el explorador de archivos para subir una imagen al area del avatar
+//se abre si se da click a subir en la edición sin poner nada
 async function openPath() {
     const url = document.getElementById('avatar-input').value === '' ? null : document.getElementById('avatar-input').value;
+
     if(!url) {
         renderer.send('openFile');
     } else {
@@ -294,6 +368,7 @@ async function openPath() {
     }
 }
 
+// funciones usadas (a grandes razgos)
 // document.getElementsByClassName('...')[...].style.display = '...';
 // const item = document.querySelector('.');
 // item.style.display = 'none';

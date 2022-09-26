@@ -27,6 +27,13 @@ app.whenReady().then(() => {
         }
     });
 
+    ipcMain.on('Ready', () => {
+        if(token) {
+            client = createClient(wind);
+            client.login(token);
+        }
+    });
+
     ipcMain.on('editBot', (event, avatar, status, activity, activityName, name, user) => {
         let usr = user;
 
@@ -107,11 +114,6 @@ app.whenReady().then(() => {
             wind.webContents.send('imagePath', filePaths[0]);
         }
     });
-
-    if(token) {
-        client = createClient(wind);
-        client.login(token);
-    }
 });
 
 app.on('window-all-closed', () => {
