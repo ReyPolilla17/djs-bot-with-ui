@@ -80,18 +80,21 @@ function createClient(wind) {
 
         // envia los servidores en los que está el bot
         // envia la invitación, usuarios, nombre, id e imagen
-        client.guilds.cache.forEach(guild => {
-            guild.invites.fetch().then(invs => {
-                if(invs.size === 0) return;
+        client.guilds.cache.forEach(async guild => {
+            const invite = 
+            await guild.invites.fetch().then(invs => {
+                if(invs.size === 0) return null;
 
-                console.log([...invs][0][0]);
+                return [...invs][0][0];
             }).catch((e) => {
-                if(e.rawError.code === 50013) return
-                
-                console.error(e.rawError.code);
+                if(e.rawError.code !== 50013) {
+                    console.error(e.rawError.code);
+                }
+
+                return null;
             });
 
-            wind.webContents.send('guildList', guild.id, guild.name, guild.memberCount, guild.iconURL());
+            wind.webContents.send('guildList', guild.id, guild.name, guild.memberCount, guild.iconURL(), invite);
         });
     });
 
@@ -254,7 +257,7 @@ function createWindow() {
         }
     });
 
-    wind.removeMenu();
+    // wind.removeMenu();
     wind.loadFile('index.html');
 
     return wind;

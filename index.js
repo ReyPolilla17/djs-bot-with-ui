@@ -8,6 +8,9 @@ let client;
         Cambiar el favicon
         Hacer que si el nombre del bot o servidor es muy largo, este se muestre via scroll
         Sección donde se vean los servidores
+            - cuenta de servidores
+            - buscador de servidores, por id o nombre
+            - mostrar que permisos tiene y cuales faltan para un fincionamiento optimo
             - pequeña area para enviar un mensaje o embed a un canal
             - opción de unirse al servidor
 */
