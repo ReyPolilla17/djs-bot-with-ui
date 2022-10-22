@@ -6,6 +6,10 @@ body {
     font-family: 'Noto Sans', sans-serif;
 }
 
+a {
+    text-decoration: none;
+}
+
 ::-webkit-scrollbar {
     width: 7px;
 }
@@ -184,6 +188,7 @@ input:disabled {
 .area-header {
     display: flex;
     justify-content: space-between;
+    height: 50px;
 }
 
 .site-title {

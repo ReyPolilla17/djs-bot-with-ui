@@ -24,11 +24,21 @@
 }
 
 .guild {
+    white-space: nowrap;
+    overflow-x: auto;
     display: flex;
     align-items: center;
     background-color: #18191c;
     padding: 10px;
     border-radius: 3px;
+}
+
+.guild::-webkit-scrollbar {
+    height: 4px;
+}
+
+.guild::-webkit-scrollbar-thumb {
+    background: #2f3136;
 }
 
 .guild > .guild-image {
@@ -38,6 +48,10 @@
 .guild > .guild-image img{
     border-radius: 100%;
     height: 50px;
+}
+
+.guild > .guild-info > .guild-name {
+    max-width: 0px;
 }
 
 .guild > .guild-info > .guild-members {

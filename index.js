@@ -1,18 +1,16 @@
-const { app, BrowserWindow, ipcMain, dialog } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog, shell } = require('electron');
 const { createClient, createWindow, consultConfig, log } = require('./functions');
 const fs = require('fs');
 let client;
 
 /*
     Pendientes:
-        Cambiar el favicon
-        Hacer que si el nombre del bot o servidor es muy largo, este se muestre via scroll
+        Hacer que si el nombre del bot es muy grande, este se muestre via scroll
         Sección donde se vean los servidores
             - cuenta de servidores
             - buscador de servidores, por id o nombre
-            - mostrar que permisos tiene y cuales faltan para un fincionamiento optimo
+            - mostrar que permisos tiene y cuales faltan para un funcionamiento optimo
             - pequeña area para enviar un mensaje o embed a un canal
-            - opción de unirse al servidor
 */
 
 app.disableHardwareAcceleration();
@@ -100,6 +98,10 @@ app.whenReady().then(() => {
         });
     });
 
+    ipcMain.on('invite', (event, guild) => {
+        client.emit('invite', guild);
+    });
+
     ipcMain.on('leaveGuild', (event, guild) => {
         client.emit('leaveGuild', guild);
     });
@@ -117,14 +119,22 @@ app.whenReady().then(() => {
             wind.webContents.send('imagePath', filePaths[0]);
         }
     });
+
+    wind.webContents.setWindowOpenHandler((link) => {
+        shell.openExternal(link.url);
+        
+        return {
+            action: 'deny'
+        };
+    });
 });
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
-        app.quit();
-
         try {
             client.destroy();
         } catch(e) {}
+
+        app.quit();
     }
 });

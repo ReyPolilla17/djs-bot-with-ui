@@ -1,12 +1,18 @@
 .menu {
-    height: fit-content;
+    display: flex;
+    min-height: 40px;
+    height: auto;
     position: relative;
     background-color: #18191c;
     color: #686d73;
     font-size: 1.2rem;
-    padding: 10px;
+    padding: 0px 10px;
     border-radius: 3px;
     transition: 0.3s;
+}
+
+.menu i {
+    display: flex;
 }
 
 .menu:hover {
@@ -15,12 +21,15 @@
 
 .menu > .placeholder {
     display: flex;
+    align-self: center;
+    align-items: center;
 }
 
 .menu > .options { 
     min-width: max-content;
     background-color: #18191c;
     border-radius: 3px;
+    margin-top: 31px;
     position: absolute;
     z-index: 1;
     display: none;
@@ -29,6 +38,11 @@
 .menu > .options > .option {
     padding: 10px 20px;
     display: flex;
+}
+
+.menu > .options > .option > .info {
+    display: flex;
+    align-items: center;
 }
 
 .text {

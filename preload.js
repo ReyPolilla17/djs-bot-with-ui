@@ -1,17 +1,22 @@
 const { contextBridge, ipcRenderer } = require('electron');
 const fs = require('fs');
 
+// Elementos a usar mientras el programa se ejecuta
 const functions = {
     fs: fs,
-    renderer: ipcRenderer
+    renderer: ipcRenderer,
 }
 
+// Si el bot no puede iniciarse correctamente
 ipcRenderer.on('errLogin', (event, err, id) => {
+    // muestra la advertencia
     document.querySelector(`#${err}`).style.display = 'block';
     document.querySelector(`#${id}`).value = '';
 });
 
+// Si se inicia sesión correctamente por primera vez
 ipcRenderer.on('succesLogin', (event, id) => {
+    // se oculta la pantalla del token y se muestra la info del bot
     document.querySelector('.token-wrapper').style.display = 'none';
     document.querySelector('.edition-wrapper').style.display = 'none';
     document.querySelector('.bot-wrapper').style.display = 'flex';
@@ -20,7 +25,9 @@ ipcRenderer.on('succesLogin', (event, id) => {
     document.querySelector(`#${id}`).value = '';
 });
 
+// Cuando el bot inicia sesion independientemente de cuando sea
 ipcRenderer.on('clientStartup', (event, name, disc, avatar, status, activity, type, user, isNew) => {
+    // cada parte de la tarjeta del bot
     document.querySelector('.bot-starting').style.display = 'none';
     document.querySelector('.bot-login').style.display = 'flex';
     document.querySelector('.bot-name').innerText = name;
@@ -99,6 +106,7 @@ ipcRenderer.on('clientStartup', (event, name, disc, avatar, status, activity, ty
 
 ipcRenderer.on('guildList', (event, id, name, mCount, image) => {
     const src = image ? image : 'https://cdn.discordapp.com/embed/avatars/0.png';
+    
     const def = 
     `<div class="guild">
         <div id="${id}"></div>
@@ -114,24 +122,36 @@ ipcRenderer.on('guildList', (event, id, name, mCount, image) => {
     </div>
     
     <div class="buttons-wrapper">
-        <button type="submit" class="green-btn" onclick="join(this.parentElement.parentElement.firstChild.firstElementChild.id)">Unirse</button>
+        <button type="submit" class="green-btn" onclick="inviteRequest(this.parentElement.parentElement.firstChild.firstElementChild.id)">Unirse</button>
         <button type="submit" class="red-btn" onclick="leaveRequest(this.parentElement.parentElement.firstChild.firstElementChild.id)">Abandonar</button>
         <button type="submit" class="blue-btn" onclick="send(this.parentElement.parentElement.firstChild.firstElementChild.id)">Enviar</button>
     </div>
     
-    <div class="confirm-message">
+    <div class="confirm-message" id="leave-confirm">
         <div class="message">
-            ¿Abandonar ${name}?
+            ¿Abandonar servidor?
         </div>
 
         <div class="buttons-wrapper">
             <button type="submit" class="green-btn" onclick="leave(this.parentElement.parentElement.parentElement.firstChild.firstElementChild.id, this.parentElement.parentElement.parentElement)">Confirmar</button>
-            <button type="submit" class="red-btn" onclick="hideChildren(this.parentElement.parentElement.parentElement)">Cancelar</button>
+            <button type="submit" class="red-btn" onclick="hideChildren(this.parentElement.parentElement.parentElement, 2)">Cancelar</button>
         </div>
-    </div>`;
+    </div>
+    
+    <div class="confirm-message" id="invite-confirm">
+        <div class="message">
+            ¿Unirse al servidor?
+        </div>
+
+        <div class="buttons-wrapper">
+            <button type="submit" class="green-btn" onclick="createInvite(this.parentElement.parentElement.parentElement.firstChild.firstElementChild.id, this.parentElement.parentElement.parentElement)">Confirmar</button>
+            <button type="submit" class="red-btn" onclick="hideChildren(this.parentElement.parentElement.parentElement, 3)">Cancelar</button>
+        </div>
+    </div>
+    `;
 
     const guildCard = document.createElement("div");
-    guildCard.classList.add('guild-wrapper')
+    guildCard.classList.add('guild-wrapper');
     guildCard.innerHTML = def;
     document.querySelector('.guilds').appendChild(guildCard);
 });
@@ -142,6 +162,7 @@ ipcRenderer.on('guildRemove', (event, id) => {
 
 ipcRenderer.on('consoleLog', (event, log) => {
     document.querySelector('.client').innerHTML = `${document.querySelector('.client').innerHTML} ${log} <br>`;
+
 });
 
 ipcRenderer.on('imagePath', (event, path) => {
@@ -167,6 +188,11 @@ ipcRenderer.on('successEdition', () => {
     document.querySelector('.edition-wrapper').style.display = 'none';
     document.querySelector('.bot-wrapper').style.display = 'flex';
     document.querySelector('.console-wrapper').style.display = 'block';
+});
+
+ipcRenderer.on('inviteCode', (event, code) => {
+    console.log(code);
+    window.open(`https://discord.gg/${code}`);
 });
 
 ipcRenderer.on('activateEdit', () => {

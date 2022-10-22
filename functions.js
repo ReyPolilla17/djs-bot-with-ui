@@ -80,26 +80,14 @@ function createClient(wind) {
 
         // envia los servidores en los que está el bot
         // envia la invitación, usuarios, nombre, id e imagen
+
         client.guilds.cache.forEach(async guild => {
-            const invite = 
-            await guild.invites.fetch().then(invs => {
-                if(invs.size === 0) return null;
-
-                return [...invs][0][0];
-            }).catch((e) => {
-                if(e.rawError.code !== 50013) {
-                    console.error(e.rawError.code);
-                }
-
-                return null;
-            });
-
-            wind.webContents.send('guildList', guild.id, guild.name, guild.memberCount, guild.iconURL(), invite);
+            wind.webContents.send('guildList', guild.id, guild.name, guild.memberCount, guild.iconURL());
         });
     });
 
     // al unirse a un servidor lo agrega a la lista y lo registra en la conosla
-    client.on('guildCreate', guild => {
+    client.on('guildCreate', async guild => {
         wind.webContents.send('guildList', guild.id, guild.name, guild.memberCount, guild.iconURL());
 
         log(wind, `Joined ${guild.name} (${guild.id})`);
@@ -210,6 +198,25 @@ function createClient(wind) {
 
         // la edición fue exitosa
         wind.webContents.send('successEdition');
+    });
+
+    // Al pedirle unirse al servidor, te da una invitación o crea una
+    client.on('invite', async guildId => {
+        const guild = client.guilds.cache.get(guildId);
+
+        // revisa si hay invitaciones, si no hay ninguna a la que pueda acceder, crea una
+        const invs = await guild.invites.fetch().catch((e) => {
+            if(e.rawError.code !== 50013) {
+                console.error(e.rawError.code);
+            }
+
+            return null;    
+        });
+
+        // comprueba si existen invitaciones
+        const invite = invs?.first() ? invs.first() : await guild.channels.cache.first().createInvite();
+
+        wind.webContents.send('inviteCode', `${invite}`);
     });
 
     // cuando se soliciata que se abandone un servidor, lo abandona

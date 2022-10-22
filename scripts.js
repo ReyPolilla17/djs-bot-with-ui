@@ -299,8 +299,9 @@ function resetClient() {
 }
 
 // dar invitación al servidor
-function join(guild) {
-    console.log(guild);
+function createInvite(guild, children) {
+    renderer.send('invite', guild);
+    hideChildren(children, 3);
 }
 
 // preguntar por confirmación de abandonar servidor
@@ -327,11 +328,35 @@ function leaveRequest(guild) {
     });
 }
 
+// preguntar por confirmación para crear una invitación
+function inviteRequest(guild) {
+    // obtener la tarjeta de servidor
+    const specifiedElement = document.getElementById(`${guild}`).parentElement.parentElement;
+
+    // mostrar mensaje de confirmación
+    specifiedElement.children[0].style.display = 'none';
+    specifiedElement.children[1].style.display = 'none';
+    specifiedElement.children[3].style.display = 'flex';
+    
+    // si se hace click fuera del area de confirmacion lo cuenta como elegir "cancelar"
+    document.addEventListener("click", function handler(event) {
+        const isClickInside = specifiedElement.contains(event.target);
+
+        if (!isClickInside) {
+            specifiedElement.children[0].style.display = 'flex';
+            specifiedElement.children[1].style.display = 'block';
+            specifiedElement.children[3].style.display = 'none';
+            
+            this.removeEventListener("click", handler);
+        }
+    });
+}
+
 // oculta el area de confirmación
-function hideChildren(children) {
+function hideChildren(children, num) {
     children.children[0].style.display = 'flex';
     children.children[1].style.display = 'block';
-    children.children[2].style.display = 'none';
+    children.children[num].style.display = 'none';
 }
 
 // abandona el servidor
