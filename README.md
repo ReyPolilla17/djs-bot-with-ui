@@ -16,7 +16,7 @@ To start the app just double click [start.bat](./start.bat) or in the console ru
 
 ### How does this work?
 - **Startup:**
-> Maybe you have noticed that there is no config.json file or anywhere to save your bot's token, well this is basically because it will be created after you start the app for the first time, and when this happen the app will ask you to insert your bot's token, after that you will be able (by now) to change thr basic details of your bot's precence (status, activity and activity name), change your bot's name and avatar and leave servers the bot is in.
+> Maybe you have noticed that there is no config.json file or anywhere to save your bot's token, well this is basically because it will be created after you start the app for the first time, and when this happen the app will ask you to insert your bot's token, after that you will be able (by now) to change the basic details of your bot's precence (status, activity and activity name), change your bot's name and avatar, make the bot leave and alow you to join servers.
 
 - **Bot edition:** 
 > After successfully logging in your bot you'll be able to see your bot's basic info in the left side of the app and in the other side you'll see a warning and two buttons: the edit button and the reset button, if you select the edit button the app will  display an edition pannel, in the top-right corner there is a cancel button to cancel every change you were working on, the rest is quite straight forward, just fill the fields you want to change and done! click the edit button in the bottom of the panel and all the changes will be applied to your bot unless you give an unvalid value to any field, in that case the app will let you know. In the bottom of the page will also appear a field to change your bot if you want.
@@ -33,14 +33,8 @@ To start the app just double click [start.bat](./start.bat) or in the console ru
 - **Console:**
 > In the homepage, at the bottom there is a console with the servers option selected, where you can see all the guilds the bot is in, each guild has 3 buttons: join, leave and send, join will give you the invite to the server, leave will make the bot to leave the server and send will give you the option to send a message to de server with the bot.
 
-### Known issues:
-- **When I run the app the bot starts, but the app freezes**
-> Sometimes the first time you open the app it can't get the [preload.js](./preload.js) file so it wont do anything.
-
->Just close and open again the app!
-
 ### Looking good, what now?
 By the moment I haven't added some features because I want to improve the code of the app, but I'm still working on them, here is the list (I may be updating this while I add or want more features so feel free to make any sugestion).
 
 - **Guilds section:**
-> A section where you will be able to see the guilds your bot is in and have the option to join or make your bot leave it or even send a message or embed from the bot.
+> A section where you will be able to see the guilds your bot is in and have the option to join or make your bot leave it or even send a message or embed from the bot, also a part to see the bot's permissions, nickname in case they've changed it and other useful stats. I'm also thinking of adding a guild searchbar to locate a server by id or bia name.
