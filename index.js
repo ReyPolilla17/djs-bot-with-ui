@@ -5,12 +5,11 @@ let client;
 
 /*
     Pendientes:
-        Hacer que si el nombre del bot es muy grande, este se muestre via scroll
         Sección donde se vean los servidores
-            - cuenta de servidores
-            - buscador de servidores, por id o nombre
+            - buscador de servidores, por id o nombre (ya está el html, falta la programación)
             - mostrar que permisos tiene y cuales faltan para un funcionamiento optimo
             - pequeña area para enviar un mensaje o embed a un canal
+            - botón para activar la opción de crear una invitación si no hay una (ya está el html, falta la programación)
 */
 
 app.disableHardwareAcceleration();

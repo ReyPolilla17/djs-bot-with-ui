@@ -34,13 +34,16 @@ ipcRenderer.on('clientStartup', (event, name, disc, avatar, status, activity, ty
     document.querySelector('.bot-disc').innerText = `#${disc}`;
     document.getElementsByClassName('avatar')[0].src = avatar;
     document.getElementsByClassName('avatar')[1].src = avatar;
+
     document.querySelector('#edit-btn').disabled = false;
     document.querySelector('#reset-btn').disabled = false;
-
     document.querySelector('#reset-btn').innerText = 'Reiniciar';
     document.querySelector('.bot-starting').innerText = 'Tu bot está iniciando sesión...';
 
-    if(isNew === true) {
+    document.querySelector('#invite-checkbox').disabled = false;
+    document.querySelector('#search-input').disabled = false;
+
+    if(isNew) {
         document.querySelector('.guilds').innerHTML = '';
     }
     
@@ -104,7 +107,7 @@ ipcRenderer.on('clientStartup', (event, name, disc, avatar, status, activity, ty
     }
 });
 
-ipcRenderer.on('guildList', (event, id, name, mCount, image) => {
+ipcRenderer.on('guildList', (event, id, name, mCount, image, gldSize) => {
     const src = image ? image : 'https://cdn.discordapp.com/embed/avatars/0.png';
     
     const def = 
@@ -154,15 +157,20 @@ ipcRenderer.on('guildList', (event, id, name, mCount, image) => {
     guildCard.classList.add('guild-wrapper');
     guildCard.innerHTML = def;
     document.querySelector('.guilds').appendChild(guildCard);
+
+    document.getElementById('extra-display').firstElementChild.lastElementChild.innerText = `Servidores (${gldSize})`;
+    document.getElementById('c-servers').firstElementChild.lastElementChild.innerText = `Servidores (${gldSize})`;
 });
 
-ipcRenderer.on('guildRemove', (event, id) => {
+ipcRenderer.on('guildRemove', (event, id, gldSize) => {
     document.getElementById(id).parentElement.parentElement.remove();
+
+    document.getElementById('extra-display').firstElementChild.lastElementChild.innerText = `Servidores (${gldSize})`;
+    document.getElementById('c-servers').firstElementChild.lastElementChild.innerText = `Servidores (${gldSize})`;
 });
 
 ipcRenderer.on('consoleLog', (event, log) => {
     document.querySelector('.client').innerHTML = `${document.querySelector('.client').innerHTML} ${log} <br>`;
-
 });
 
 ipcRenderer.on('imagePath', (event, path) => {
@@ -171,17 +179,17 @@ ipcRenderer.on('imagePath', (event, path) => {
 
 ipcRenderer.on('cooldownAvatar', () => {
     document.querySelector('#avatar-error').innerText = 'Has cambiado muchas veces este campo, intenta más tarde...';
-    document.querySelector('#avatar-error').style.visibility = 'visible';
+    document.querySelector('#avatar-error').style.display = 'block';
 });
 
 ipcRenderer.on('cooldownName', () => {
     document.querySelector('#name-error').innerText = 'Has cambiado muchas veces este campo, intenta más tarde...';
-    document.querySelector('#name-error').style.visibility = 'visible';
+    document.querySelector('#name-error').style.display = 'block';
 });
 
 ipcRenderer.on('usedName', () => {
     document.querySelector('#name-error').innerText = 'Ese nombre está muy usado, intenta con otro...';
-    document.querySelector('#name-error').style.visibility = 'visible';
+    document.querySelector('#name-error').style.display = 'block';
 });
 
 ipcRenderer.on('successEdition', () => {
@@ -191,7 +199,6 @@ ipcRenderer.on('successEdition', () => {
 });
 
 ipcRenderer.on('inviteCode', (event, code) => {
-    console.log(code);
     window.open(`https://discord.gg/${code}`);
 });
 

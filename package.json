@@ -1,6 +1,6 @@
 {
   "name": "bot-con-interfaz",
-  "version": "1.9.0",
+  "version": "1.9.8",
   "description": "A discord bot with a UI to make it more easy to handle.",
   "main": "index.js",
   "scripts": {

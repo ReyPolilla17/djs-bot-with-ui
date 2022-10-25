@@ -73,7 +73,7 @@ function hide(id) {
     document.querySelector(`${id}`).style.display = 'none';
 }
 
-// desactivar, activar botones o campos (usa la ide del objeto)
+// desactivar, activar botones o campos (usa la id del objeto)
 
 function disable(id) {
     document.querySelector(`#${id}`).disabled = true;
@@ -296,6 +296,17 @@ function resetClient() {
     document.querySelector('.bot-starting').innerText = 'Tu bot está reiniciando...'
     
     document.querySelector('.bot-login').style.display = 'none';
+
+    document.querySelector('#invite-checkbox').disabled = true;
+    document.querySelector('#search-input').disabled = true;
+}
+
+function inviteChange(checked) {
+    if(checked === true) {
+        // console.log('checado');
+    } else {
+        // console.log('deschecado');
+    }
 }
 
 // dar invitación al servidor

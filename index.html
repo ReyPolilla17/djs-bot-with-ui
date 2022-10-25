@@ -115,14 +115,14 @@
                     </div>
                     
                     <div class="options">
-                        <div class="option" id="c-servers" onclick="select('extra-display', 'c-servers'), hideShow('.client', '.guilds', 'grid')">
+                        <div class="option" id="c-servers" onclick="select('extra-display', 'c-servers'), hideShow('.client', '.guilds', 'grid'), enable('search-input')">
                             <div class="info">
                                 <div class="0"></div>
                                 <div class="text">Servidores</div>
                             </div>
                         </div>
 
-                        <div class="option" id="c-console" onclick="select('extra-display', 'c-console'), hideShow('.guilds', '.client', 'block')">
+                        <div class="option" id="c-console" onclick="select('extra-display', 'c-console'), hideShow('.guilds', '.client', 'block'), disable('search-input')">
                             <div class="info">
                                 <div class="1"></div>
                                 <div class="text">Consola</div>
@@ -131,6 +131,20 @@
                     </div>
                 </div>
             </div>
+
+            <div class="search-wrapper">
+                <input type="text" name="guildSearch" id="search-input" disabled placeholder="Buscar Servidor">
+            </div>
+
+            <div class="invite-wrapper">
+                <div class="text">Crear invitación</div>
+                
+                <label class="switch">
+                    <input type="checkbox" id="invite-checkbox" disabled onclick="inviteChange(this.checked)">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
         </div>
 
         <div class="console">

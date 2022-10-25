@@ -63,7 +63,8 @@ function createClient(wind) {
                 client.presence.activities[0].name,
                 client.presence.activities[0].type,
                 config.presence.user,
-                true
+                true,
+                client.guilds.cache.size
             );
         } else {
             wind.webContents.send('clientStartup', 
@@ -74,28 +75,29 @@ function createClient(wind) {
                 null,
                 null,
                 config.presence.user,
-                true
+                true,
+                client.guilds.cache.size
             );
         }
 
         // envia los servidores en los que está el bot
-        // envia la invitación, usuarios, nombre, id e imagen
+        // envia usuarios, nombre, id, imagen y cantidad de servidores
 
         client.guilds.cache.forEach(async guild => {
-            wind.webContents.send('guildList', guild.id, guild.name, guild.memberCount, guild.iconURL());
+            wind.webContents.send('guildList', guild.id, guild.name, guild.memberCount, guild.iconURL(), client.guilds.cache.size);
         });
     });
 
     // al unirse a un servidor lo agrega a la lista y lo registra en la conosla
     client.on('guildCreate', async guild => {
-        wind.webContents.send('guildList', guild.id, guild.name, guild.memberCount, guild.iconURL());
+        wind.webContents.send('guildList', guild.id, guild.name, guild.memberCount, guild.iconURL(), client.guilds.cache.size);
 
         log(wind, `Joined ${guild.name} (${guild.id})`);
     });
     
     // al abandonar el servidor, lo elimina de la lista y lo registra en la consola
     client.on('guildDelete', guild => {
-        wind.webContents.send('guildRemove', guild.id);
+        wind.webContents.send('guildRemove', guild.id, client.guilds.cache.size);
 
         log(wind, `No longer in ${guild.name} (${guild.id})`);
     });
@@ -165,7 +167,7 @@ function createClient(wind) {
                 client.presence.activities[0].name,
                 client.presence.activities[0].type,
                 user,
-                false
+                null
             );
         } else {
             wind.webContents.send('clientStartup', 
@@ -176,7 +178,7 @@ function createClient(wind) {
                 null,
                 null,
                 user,
-                false
+                null
             );
         }
 
@@ -240,7 +242,8 @@ function consultConfig() {
                 activity: 6,
                 user: null,
                 name: null
-            }
+            },
+            newInv: false
         };
 
         fs.writeFileSync(`./config.json`, JSON.stringify(base, null, 4));
@@ -264,7 +267,7 @@ function createWindow() {
         }
     });
 
-    // wind.removeMenu();
+    wind.removeMenu();
     wind.loadFile('index.html');
 
     return wind;
