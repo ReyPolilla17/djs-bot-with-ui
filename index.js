@@ -5,8 +5,10 @@ let client;
 
 /*
     Pendientes:
-        Sección donde se vean los servidores
+    Sección donde se vean los servidores
+            - Actualización de la info del servidor en caso de cambio
             - mostrar que permisos tiene y cuales faltan para un funcionamiento optimo
+            - Mostrar la fecha de creación del servidor, dueño y desde cuando pertenece el bot
             - pequeña area para enviar un mensaje o embed a un canal
 */
 
