@@ -15,7 +15,8 @@ if(!confDir) {
             activity: 6,
             user: null,
             name: null
-        }
+        },
+        newInv: false
     };
 
     fs.writeFileSync(`./config.json`, JSON.stringify(base, null, 4));
@@ -75,9 +76,12 @@ function hide(id) {
 
 // desactivar, activar botones o campos (usa la id del objeto)
 
-function disable(id) {
+function disable(id, reset) {
     document.querySelector(`#${id}`).disabled = true;
-    document.querySelector(`#${id}`).value = '';
+    
+    if(reset !== false) {
+        document.querySelector(`#${id}`).value = '';
+    }
 }
 
 function enable(id) {
@@ -301,18 +305,53 @@ function resetClient() {
     document.querySelector('#search-input').disabled = true;
 }
 
-function inviteChange(checked) {
-    if(checked === true) {
-        // console.log('checado');
-    } else {
-        // console.log('deschecado');
+// buscar servidores por nombre o id
+function search(arg) {
+    // si la barra de busqueda está vacía, muestra los servidores, si no, muestra solo los resultados de la busqueda
+    const disp = arg === '' ? 'block' : 'none';
+    
+    // bucle que oculta
+    for (const child of document.querySelector('.guilds').children) {
+        child.style.display = disp;
     }
+
+    // buble que muestra
+    for (const child of document.querySelector('.guilds').children) {
+        // obtiene la id del servidor y el nombre
+        const guildName = child.firstElementChild.lastElementChild.firstElementChild.innerText.toLowerCase();
+        const guildId = child.firstElementChild.firstElementChild.id;
+
+        // si la id o el nombre contiene los caracteres de la busqueda, los muestra
+        if(guildName.includes(arg.toLowerCase()) || guildId.includes(arg)) {
+            child.style.display = 'block';
+        }
+    }
+
+}
+
+// al activar o desactivar la opcion de crear invitación
+function inviteChange(checked) {
+    // accede a config.json
+    const dir = fs.readFileSync('./config.json');
+    const info = new TextDecoder("utf-8").decode(dir);
+    const config = JSON.parse(info);
+
+    // cambia el valor de config.json para guardarlo al iniciar de nuevo
+    if(checked === true) {
+        config.newInv = true;
+    } else {
+        config.newInv = false;
+    }
+
+    // sobreescribe el valor
+    fs.writeFileSync(`./config.json`, JSON.stringify(config, null, 4));
 }
 
 // dar invitación al servidor
-function createInvite(guild, children) {
-    renderer.send('invite', guild);
-    hideChildren(children, 3);
+function createInvite(guild) {
+    const newInv = document.getElementById('invite-checkbox').checked;
+
+    renderer.send('invite', guild, newInv);
 }
 
 // preguntar por confirmación de abandonar servidor

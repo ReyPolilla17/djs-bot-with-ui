@@ -6,10 +6,8 @@ let client;
 /*
     Pendientes:
         Sección donde se vean los servidores
-            - buscador de servidores, por id o nombre (ya está el html, falta la programación)
             - mostrar que permisos tiene y cuales faltan para un funcionamiento optimo
             - pequeña area para enviar un mensaje o embed a un canal
-            - botón para activar la opción de crear una invitación si no hay una (ya está el html, falta la programación)
 */
 
 app.disableHardwareAcceleration();
@@ -97,8 +95,8 @@ app.whenReady().then(() => {
         });
     });
 
-    ipcMain.on('invite', (event, guild) => {
-        client.emit('invite', guild);
+    ipcMain.on('invite', (event, guild, newInv) => {
+        client.emit('invite', guild, newInv);
     });
 
     ipcMain.on('leaveGuild', (event, guild) => {

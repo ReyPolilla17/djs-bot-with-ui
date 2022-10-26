@@ -26,7 +26,7 @@ ipcRenderer.on('succesLogin', (event, id) => {
 });
 
 // Cuando el bot inicia sesion independientemente de cuando sea
-ipcRenderer.on('clientStartup', (event, name, disc, avatar, status, activity, type, user, isNew) => {
+ipcRenderer.on('clientStartup', (event, name, disc, avatar, status, activity, type, user, isNew, newInv) => {
     // cada parte de la tarjeta del bot
     document.querySelector('.bot-starting').style.display = 'none';
     document.querySelector('.bot-login').style.display = 'flex';
@@ -45,6 +45,12 @@ ipcRenderer.on('clientStartup', (event, name, disc, avatar, status, activity, ty
 
     if(isNew) {
         document.querySelector('.guilds').innerHTML = '';
+    }
+
+    if(newInv === true) {
+        document.getElementById('invite-checkbox').checked = true;
+    } else {
+        document.getElementById('invite-checkbox').checked = false;
     }
     
     document.title = name;
@@ -147,7 +153,7 @@ ipcRenderer.on('guildList', (event, id, name, mCount, image, gldSize) => {
         </div>
 
         <div class="buttons-wrapper">
-            <button type="submit" class="green-btn" onclick="createInvite(this.parentElement.parentElement.parentElement.firstChild.firstElementChild.id, this.parentElement.parentElement.parentElement)">Confirmar</button>
+            <button type="submit" class="green-btn" onclick="createInvite(this.parentElement.parentElement.parentElement.firstChild.firstElementChild.id)">Confirmar</button>
             <button type="submit" class="red-btn" onclick="hideChildren(this.parentElement.parentElement.parentElement, 3)">Cancelar</button>
         </div>
     </div>
@@ -198,8 +204,26 @@ ipcRenderer.on('successEdition', () => {
     document.querySelector('.console-wrapper').style.display = 'block';
 });
 
-ipcRenderer.on('inviteCode', (event, code) => {
+ipcRenderer.on('inviteCode', (event, code, id) => {
+    const children = document.getElementById(`${id}`).parentElement.parentElement;
+
     window.open(`https://discord.gg/${code}`);
+    
+    children.children[0].style.display = 'flex';
+    children.children[1].style.display = 'block';
+    children.children[3].style.display = 'none';
+});
+
+ipcRenderer.on('noInvite', (event, id) => {
+    const children = document.getElementById(`${id}`).parentElement.parentElement;
+    
+    children.children[3].firstElementChild.innerText = 'Sin invitación';
+    children.children[3].lastElementChild.firstElementChild.disabled = true;
+    
+    setTimeout(() => {
+        children.children[3].firstElementChild.innerText = '¿Unirse al servidor?';
+        children.children[3].lastElementChild.firstElementChild.disabled = false;
+    }, 2000);
 });
 
 ipcRenderer.on('activateEdit', () => {

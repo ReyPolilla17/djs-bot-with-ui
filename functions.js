@@ -64,7 +64,7 @@ function createClient(wind) {
                 client.presence.activities[0].type,
                 config.presence.user,
                 true,
-                client.guilds.cache.size
+                config.newInv
             );
         } else {
             wind.webContents.send('clientStartup', 
@@ -76,7 +76,7 @@ function createClient(wind) {
                 null,
                 config.presence.user,
                 true,
-                client.guilds.cache.size
+                config.newInv
             );
         }
 
@@ -157,6 +157,10 @@ function createClient(wind) {
             client.user.setStatus(status);
         }
 
+        // Obtiene config.json
+        const configFiles = fs.readFileSync(`./config.json`);
+        let config = JSON.parse(configFiles);
+        
         // se envia la nueva informacion a la GUI
         if(client.presence.activities[0]) {
             wind.webContents.send('clientStartup', 
@@ -167,7 +171,8 @@ function createClient(wind) {
                 client.presence.activities[0].name,
                 client.presence.activities[0].type,
                 user,
-                null
+                null,
+                config.newInv
             );
         } else {
             wind.webContents.send('clientStartup', 
@@ -178,14 +183,13 @@ function createClient(wind) {
                 null,
                 null,
                 user,
-                null
+                null,
+                config.newInv
             );
         }
 
         // se escriben los nuevos valores en config.json
-        const configFiles = fs.readFileSync(`./config.json`);
-        let config = JSON.parse(configFiles);
-
+        
         config.presence.status = status;
         config.presence.activity = activity;
         config.presence.name = activityName;
@@ -203,7 +207,7 @@ function createClient(wind) {
     });
 
     // Al pedirle unirse al servidor, te da una invitación o crea una
-    client.on('invite', async guildId => {
+    client.on('invite', async (guildId, newInv) => {
         const guild = client.guilds.cache.get(guildId);
 
         // revisa si hay invitaciones, si no hay ninguna a la que pueda acceder, crea una
@@ -215,10 +219,13 @@ function createClient(wind) {
             return null;    
         });
 
-        // comprueba si existen invitaciones
-        const invite = invs?.first() ? invs.first() : await guild.channels.cache.first().createInvite();
+        // comprueba si existen y si se pueden crear invitaciones
 
-        wind.webContents.send('inviteCode', `${invite}`);
+        if(!invs?.first() && newInv === false) return wind.webContents.send('noInvite', guildId);
+        
+        const invite = invs?.first() ? invs.first() : await guild.channels.cache.filter(ch => ch.type === 0 || ch.type === 2).first().createInvite();
+
+        wind.webContents.send('inviteCode', `${invite}`, guildId);
     });
 
     // cuando se soliciata que se abandone un servidor, lo abandona
