@@ -32,8 +32,6 @@ const data = JSON.parse(info);
 
 if(data.token) {
     document.querySelector('.token-wrapper').style.display = 'none';
-    document.querySelector('.console-wrapper').style.display = 'block';
-    document.querySelector('.bot-wrapper').style.display = 'flex';
 }
 
 // decirle a index.js que se puede crear el bot
@@ -42,7 +40,7 @@ renderer.send('Ready');
 
 // se ejecuta al enviar un token nuevo
 // id es el campo en el que se mando (inicio o edicion)
-// err es cual mensaje de error se mostratá en caso de error
+// err es cual mensaje de error se mostrará en caso de error
 
 function submitToken(id, err) {
     const token = document.querySelector(`#${id}`).value;
@@ -187,6 +185,7 @@ function enterLink(source) {
         } else {
             document.querySelector('#avatar-error').innerText = 'No se encontró la imagen, intenta con otra...';
             document.querySelector('#avatar-error').style.display = 'block';
+            document.querySelector(`#${source}`).value = ''
         }
     });
 }
@@ -195,9 +194,7 @@ function enterLink(source) {
 function resetAvatar() {
     document.querySelector(`#avatar-input`).value = '';
     document.getElementsByClassName('avatar')[1].src = document.getElementsByClassName('avatar')[0].src;
-
 }
-
 
 // manda la información a editar en el bot, si hay algun error no manda nada para no sobrecargar al bot de errores
 function editBot() {

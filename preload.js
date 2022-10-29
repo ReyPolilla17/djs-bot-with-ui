@@ -134,6 +134,7 @@ ipcRenderer.on('guildList', (event, id, name, mCount, image, gldSize) => {
         <button type="submit" class="green-btn" onclick="inviteRequest(this.parentElement.parentElement.firstChild.firstElementChild.id)">Unirse</button>
         <button type="submit" class="red-btn" onclick="leaveRequest(this.parentElement.parentElement.firstChild.firstElementChild.id)">Abandonar</button>
         <button type="submit" class="blue-btn" onclick="send(this.parentElement.parentElement.firstChild.firstElementChild.id)">Enviar</button>
+        <i class="fa-solid fa-circle-info"></i>
     </div>
     
     <div class="confirm-message" id="leave-confirm">

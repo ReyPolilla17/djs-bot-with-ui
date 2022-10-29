@@ -23,6 +23,7 @@ a {
     background: #18191c;
 }
 
+
 .token-wrapper {
     display: flex;
     padding-top: 20px;
@@ -96,7 +97,7 @@ input:disabled {
 }
 
 .bot-wrapper {
-    display: none;
+    display: flex;
     padding: 20px 0px;
     justify-content: space-between;
 }
@@ -317,11 +318,6 @@ input:disabled {
     margin-right: 10px;
 }
 
-.console-wrapper {
-    display: none;
-    padding-bottom: 20px;
-}
-
 .console-wrapper > .area-header {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
@@ -357,4 +353,16 @@ input:disabled {
 
 .client {
     display: none;
+}
+
+.fixed {
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2;
+    position: absolute;
+    justify-content: center;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    right: 0;
 }

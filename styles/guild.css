@@ -2,6 +2,19 @@
     padding-top: 5px;
 }
 
+.guild-wrapper > .buttons-wrapper i {
+    color: #4F545C;
+    transition: 0.3s;
+}
+
+.guild-wrapper > .buttons-wrapper i:hover {
+    color: #686d73;
+}
+
+.guild-wrapper > .buttons-wrapper i:active {
+    color: #72767D;
+}
+
 .guild-wrapper > .buttons-wrapper button {
     padding: 5px;
     min-width: 0px;
