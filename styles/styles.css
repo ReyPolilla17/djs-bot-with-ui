@@ -356,6 +356,7 @@ input:disabled {
 }
 
 .fixed {
+    display: flex;
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 2;
     position: absolute;
