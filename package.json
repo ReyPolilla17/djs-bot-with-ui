@@ -23,10 +23,10 @@
     "url": "https://github.com/ReyPolilla17/djs-bot-with-ui/issues"
   },
   "homepage": "https://github.com/ReyPolilla17/djs-bot-with-ui#readme",
-  "dependencies": {
-    "discord.js": "^14.0.3"
-  },
   "devDependencies": {
-    "electron": "^20.1.3"
+    "electron": "^27.0.2"
+  },
+  "dependencies": {
+    "discord.js": "^14.13.0"
   }
 }
