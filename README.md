@@ -44,3 +44,11 @@ By the moment I haven't added some features because I want to improve the code o
 
 - **Guilds section:**
 > A section where you will be able to see the guilds your bot is in and have the option to join or make your bot leave it or even send a message or embed from the bot, also a part to see the bot's permissions, nickname in case they've changed it and other useful stats.
+
+- **Language support for english:**
+> The UI is in spanish because I started it as a personal project, but a language selector wouldnt be so bad...
+
+- **Re do?:**
+> I have learned a lot of coding since I started this, so maybe it would be a good idea to re-create most of the code, maybe I keep the styles and some HTML stuff, but I want to improve evey function I use and add more useful things, I was planning on adding support for object-based databases which is something I'm using in my current discord bots (because I hate DBMSs :P).
+
+IDK I may create a new branch for a new version of the code, more organized, less ugly, etc...
