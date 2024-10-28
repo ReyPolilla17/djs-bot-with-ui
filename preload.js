@@ -79,7 +79,7 @@ ipcRenderer.on('clientStartup', (event, name, disc, avatar, status, activity, ty
             break;
     }
 
-    if(type !== null && activity !== null) {
+    if(type && activity) {
         switch(type) {
             case 0:
                 document.querySelector('.activity-type').innerText = 'Jugando a';

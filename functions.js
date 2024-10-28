@@ -6,6 +6,7 @@ const fs = require('fs');
 module.exports = {
     createClient,
     createWindow,
+    createChild,
     consultConfig,
     log
 }
@@ -276,6 +277,25 @@ function createWindow() {
 
     wind.removeMenu();
     wind.loadFile('index.html');
+
+    return wind;
+}
+
+function createChild(parent, modal) {
+    const wind = new BrowserWindow({
+        parent: parent,
+        modal: modal,
+        width: 840,
+        height: 600,
+        icon: './favicon.png',
+        webPreferences: {
+            sandbox: false,
+            preload: path.join(__dirname, 'preload.js')
+        }
+    });
+
+    wind.removeMenu();
+    wind.loadFile('webhook.html');
 
     return wind;
 }

@@ -1,6 +1,8 @@
 const { app, BrowserWindow, ipcMain, dialog, shell } = require('electron');
-const { createClient, createWindow, consultConfig, log } = require('./functions');
+const { createClient, createWindow, createChild, consultConfig, log } = require('./functions');
 const fs = require('fs');
+
+// esta variable global me daría un 0 en programación
 let client;
 
 /*
@@ -13,13 +15,18 @@ let client;
 */
 
 app.disableHardwareAcceleration();
-app.whenReady().then(() => {
-    let wind = createWindow();
-    const config = consultConfig();
 
+// todo el código se ejecuta una vez está lista la instancia de electron
+app.whenReady().then(() => {
+    // se guarda wind como let para poder modificarla en cualquier momento
+    let wind = createWindow();
+
+    // config es el archivo config.json en el que se aloja la información de inicio de sesion del bot
+    const config = consultConfig();
     let { token, presence } = config;
     const { user } = presence;
 
+    // se supone que esto funciona para MacOs, que en lugar de cerrar por completo el programa, lo deja en espera
     app.on('activate', () => {
         // checar en una VM o algo el como se ejecuta esto, no tengo idea de que pasaría...
         if (BrowserWindow.getAllWindows().length === 0) {
@@ -27,6 +34,7 @@ app.whenReady().then(() => {
         }
     });
 
+    // cunando la ventana esté lista, se crea una instancia de bot y se inicia sesion con el token almacenado en config.json
     ipcMain.on('Ready', () => {
         if(token) {
             client = createClient(wind);
@@ -34,6 +42,7 @@ app.whenReady().then(() => {
         }
     });
 
+    // este evento se dispara cuando se edita el bot desde la GUI, cambia todos los valores posibles
     ipcMain.on('editBot', (event, avatar, status, activity, activityName, name, user) => {
         let usr = user;
 
@@ -54,6 +63,7 @@ app.whenReady().then(() => {
         client.emit('change', avatar, status, activity, activityName, name, usr);
     });
 
+    // cambia el token de config.json e inicia sesion como un nuevo bot, destruyendo el anterior, si es que existe
     ipcMain.on('submitToken', (event, token, error, id) => {
         let Rtoken = client ? client.token : null;
 
@@ -84,6 +94,7 @@ app.whenReady().then(() => {
         });
     });
 
+    // para reiniciar el bot, elimina la instancia de bot y la vuelve a crear
     ipcMain.on('resetClient', () => {
         const token = client.token;
 
@@ -97,14 +108,21 @@ app.whenReady().then(() => {
         });
     });
 
+    // si el usuario solicita una invitación, le envia la solicitud al bot, que se encarga de obtener la liga y regresarla a la ventana de la GUI
     ipcMain.on('invite', (event, guild, newInv) => {
         client.emit('invite', guild, newInv);
     });
 
+    // le da la instrucción al cliente de abandonar un servidor
     ipcMain.on('leaveGuild', (event, guild) => {
         client.emit('leaveGuild', guild);
     });
 
+    ipcMain.on('openChild', (event, modal) => {
+        let child = createChild(wind, modal);
+    });
+
+    // se usa para abrir imagenes (cambio de avatar)
     ipcMain.on('openFile', async () => {
         const { canceled, filePaths } = await dialog.showOpenDialog({
             filters: [

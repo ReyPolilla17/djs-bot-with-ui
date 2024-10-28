@@ -302,6 +302,10 @@ function resetClient() {
     document.querySelector('#search-input').disabled = true;
 }
 
+function openWindow(modal) {
+    renderer.send('openChild', modal);
+}
+
 // buscar servidores por nombre o id
 function search(arg) {
     // si la barra de busqueda está vacía, muestra los servidores, si no, muestra solo los resultados de la busqueda
